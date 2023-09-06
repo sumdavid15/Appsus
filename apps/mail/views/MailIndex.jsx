@@ -16,6 +16,12 @@ export function MailIndex() {
             })
     }, [filterBy])
 
-    return <div>mail app</div>
+    return (
+        <section className="mail-index">
+            <h1>Mail Index</h1>
+            {/* <MailFilter onSetFilter={setFilterBy} />
+            <MailList mails={mails} /> */}
+        </section>
+    )
 }
 
