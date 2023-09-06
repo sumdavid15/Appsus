@@ -1,28 +1,35 @@
 import { NoteAdd } from "../cmps/NoteAdd.jsx";
 import { NoteList } from "../cmps/NoteList.jsx";
 import { noteService } from "../services/note.service.js";
-import { asyncStorageService } from "../../../services/async-storage.service.js";
+
 
 const { useState, useEffect } = React
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
-    console.log(notes);
 
     useEffect(() => {
-        asyncStorageService.query('note-list').then(setNotes)
+        noteService.getNotes().then(setNotes)
     }, [])
 
-    function createNote(note) {
+    function addNote(note) {
         note.createdAt = Date.now()
-        noteService.saveNote(note).then((res) => asyncStorageService.query('note-list')).then(setNotes)
-        console.log(note);
+        saveNote(note);
+    }
+
+    function saveNote(note) {
+        noteService.saveNote(note).then((res) => noteService.getNotes()).then(setNotes);
+    }
+
+    function deleteNote(noteId) {
+        setNotes(notes.filter(note => note.id !== noteId))
+        noteService.deleteNote(noteId).then(() => noteService.getNotes()).then(setNotes)
     }
 
     return (
         <div className="note-index-container">
-            <NoteAdd onCreate={createNote} />
-            <NoteList notes={notes} />
+            <NoteAdd onCreate={addNote} />
+            <NoteList notes={notes} onDeleteNote={deleteNote} onChange={saveNote} />
         </div>
     )
 }

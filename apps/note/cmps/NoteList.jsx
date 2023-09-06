@@ -1,27 +1,13 @@
-import { TextNote } from "./TextNote.jsx";
-import { ImgNote } from "./ImgNote.jsx"
-import { VideoNote } from "./VideoNote.jsx"
 
-export function NoteList({ notes }) {
-    console.log(notes);
+import { Note } from "./Note.jsx";
 
-    function noteType(note) {
-        switch (note.type) {
-            case 'text':
-                return <TextNote note={note} />
-            case 'img':
-                return <ImgNote note={note} />
-            case 'video':
-                return <VideoNote note={note} />
-            default:
-        }
-    }
+export function NoteList({ notes, onDeleteNote, onChange }) {
 
     if (!notes.length) return <div>No notes Saved</div>
 
     return (
         <section className="note-list">
-            {notes.map(note => <div key={note.id}>{noteType(note)}</div>)}
+            {notes.map(note => <div key={note.id}><Note note={note} onDeleteNote={onDeleteNote} onChange={onChange} /></div>)}
         </section>
     )
 }

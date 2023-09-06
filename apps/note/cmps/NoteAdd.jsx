@@ -1,3 +1,5 @@
+import { ColorNote } from "./ColorNote.jsx"
+
 const { useState } = React
 
 export function NoteAdd({ onCreate }) {
@@ -43,12 +45,7 @@ export function NoteAdd({ onCreate }) {
                     <option value="img">Image</option>
                     <option value="video">Video</option>
                 </select>
-                <select value={color} onChange={(e) => setColor(e.target.value)}>
-                    <option value="#cfc">1</option>
-                    <option value="#ccf">2</option>
-                    <option value="#ffc">3</option>
-                    <option value="rgb(173, 216, 230)">4</option>
-                </select>
+                <ColorNote color={color} onChange={(color) => setColor(color)} />
                 <input
                     type="checkbox"
                     checked={isPinned}

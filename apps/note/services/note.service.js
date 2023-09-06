@@ -7,8 +7,22 @@ const NOTE_KEY = 'note-list'
 
 export const noteService = {
     saveNote,
+    getNotes,
+    deleteNote,
 }
 
 function saveNote(note) {
-    return asyncStorageService.post(NOTE_KEY, note)
+    if (note.id) {
+        return asyncStorageService.put(NOTE_KEY, note)
+    } else {
+        return asyncStorageService.post(NOTE_KEY, note)
+    }
+}
+
+function getNotes() {
+    return asyncStorageService.query(NOTE_KEY)
+}
+
+function deleteNote(noteId) {
+    return asyncStorageService.remove(NOTE_KEY, noteId)
 }
