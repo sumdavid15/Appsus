@@ -35,8 +35,6 @@ export function MailIndex() {
         mailService.save(mail)
     }
 
-    if (!mails) return <div>Loading...</div>
-
   return (
     <section className="mail-index">
       <h1>Mail Index</h1>

@@ -43,6 +43,9 @@ export function MailPreview({ mail, onMailClicked }) {
     setIsStarred(!isStarred)
   }
 
+// if no mails, show no mails
+
+
   return (
     <React.Fragment>
       {/* <li className="mail-preview" onClick={() => onMailClick(mail.id)}> */}

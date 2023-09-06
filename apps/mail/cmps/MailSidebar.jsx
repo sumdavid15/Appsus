@@ -27,8 +27,6 @@ const { useState, useEffect } = React
 //     )
 // }
 
-
-
 export function MailSidebar({ onSetFilter, filterBy }) {
   // criteria = {
   //     status: 'inbox',
@@ -40,80 +38,97 @@ export function MailSidebar({ onSetFilter, filterBy }) {
 
   const [statusFilter, setStatusFilter] = useState(filterBy.status)
   const [starredFilter, setStarredFilter] = useState(filterBy.isStarred)
-  const [selected, setSelected] = useState('inbox')
+  const [selected, setSelected] = useState("inbox")
 
   useEffect(() => {
-    const newFilterBy = { ...filterBy, status: statusFilter, isStarred: starredFilter }
-    console.log('newFilterBy', newFilterBy);
+    const newFilterBy = {
+      ...filterBy,
+      status: statusFilter,
+      isStarred: starredFilter,
+    }
+    console.log("newFilterBy", newFilterBy)
     onSetFilter(newFilterBy)
   }, [statusFilter])
 
-    useEffect(() => {
-        const newFilterBy = { ...filterBy, status: statusFilter, isStarred: starredFilter }
-        console.log('newFilterBy', newFilterBy);
-        onSetFilter(newFilterBy)
-        console.log('starredFilter', starredFilter);
-        console.log(selected);
-    }, [starredFilter])
-
-    function handleChange(ev) {
-        if (ev.target.name === 'status') {
-            setStatusFilter(ev.target.value)
-            setStarredFilter(null)
-            setSelected(ev.target.value)
-        }
-        if (ev.target.name === 'starred') {
-            setStarredFilter(ev.target.value)
-            setStatusFilter('inbox')
-            setSelected('starred')
-        }
+  useEffect(() => {
+    const newFilterBy = {
+      ...filterBy,
+      status: statusFilter,
+      isStarred: starredFilter,
     }
+    console.log("newFilterBy", newFilterBy)
+    onSetFilter(newFilterBy)
+    console.log("starredFilter", starredFilter)
+    console.log(selected)
+  }, [starredFilter])
 
-    return (
-        <section className="mail-sidebar">
-            <br />
-            <ul className="sidebar-container">
-                <li
-                    onClick={() => handleChange({ target: { name: 'status', value: 'inbox' } })}
-                    className={selected === 'inbox' ? "active" : ""}
-                >
-                    <i className="fa-solid fa-inbox"></i>
-                    Inbox
-                </li>
-                <li
-                    onClick={() => handleChange({ target: { name: 'starred', value: true } })}
-                    className={selected === 'starred' ? "active" : ""}
-                >
-                    <i className="fa-solid fa-star"></i>
-                    Starred
-                </li>
-                <li
-                    onClick={() => handleChange({ target: { name: 'status', value: 'sent' } })}
-                    className={selected === 'sent' ? "active" : ""}
-                >
-                    <i className="fa-solid fa-paper-plane"></i>
-                    Sent
-                </li>
-                <li
-                    onClick={() => handleChange({ target: { name: 'status', value: 'drafts' } })}
-                    className={selected === 'drafts' ? "active" : ""}
-                >
-                    <i className="fa-solid fa-file-edit"></i>
-                    Drafts
-                </li>
-                <li
-                    onClick={() => handleChange({ target: { name: 'status', value: 'trash' } })}
-                    className={selected === 'trash' ? "active" : ""}
-                >
-                    <i className="fa-solid fa-trash"></i>
-                    Trash
-                </li>
-            </ul>
-        </section>
-    )
+  function handleChange(ev) {
+    if (ev.target.name === "status") {
+      setStatusFilter(ev.target.value)
+      setStarredFilter(null)
+      setSelected(ev.target.value)
+    }
+    if (ev.target.name === "starred") {
+      setStarredFilter(ev.target.value)
+      setStatusFilter("inbox")
+      setSelected("starred")
+    }
+  }
+
+  return (
+    <section className="mail-sidebar">
+      <ul className="sidebar-container">
+        <li
+          onClick={() =>
+            handleChange({ target: { name: "status", value: "inbox" } })
+          }
+          className={selected === "inbox" ? "active" : ""}
+        >
+          <i className="fa-solid fa-inbox"></i>
+          Inbox
+        </li>
+        <li
+          onClick={() =>
+            handleChange({ target: { name: "starred", value: true } })
+          }
+          className={selected === "starred" ? "active" : ""}
+        >
+          <i className="fa-solid fa-star"></i>
+          Starred
+        </li>
+        <li
+          onClick={() =>
+            handleChange({ target: { name: "status", value: "sent" } })
+          }
+          className={selected === "sent" ? "active" : ""}
+        >
+          <i className="fa-solid fa-paper-plane"></i>
+          Sent
+        </li>
+        <li
+          onClick={() =>
+            handleChange({ target: { name: "status", value: "drafts" } })
+          }
+          className={selected === "drafts" ? "active" : ""}
+        >
+          <i className="fa-solid fa-file-edit"></i>
+          Drafts
+        </li>
+        <li
+          onClick={() =>
+            handleChange({ target: { name: "status", value: "trash" } })
+          }
+          className={selected === "trash" ? "active" : ""}
+        >
+          <i className="fa-solid fa-trash"></i>
+          Trash
+        </li>
+      </ul>
+    </section>
+  )
 }
 
-  /* <section className="mail-sidebar">
+/* <section className="mail-sidebar">
 <br />
 <ul className="sidebar-container">
   <li
@@ -153,4 +168,3 @@ export function MailSidebar({ onSetFilter, filterBy }) {
   </li>
 </ul>
 </section> */
-

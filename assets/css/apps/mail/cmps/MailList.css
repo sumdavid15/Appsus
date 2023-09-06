@@ -5,6 +5,7 @@
     flex: 1;
     overflow: hidden;
     margin-block-end: 1.5em;
+    justify-content: center;
 }
 
  .mail-list {
