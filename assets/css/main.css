@@ -26,3 +26,8 @@
 /* APPS */
 @import './apps/mail/main.css';
 @import './apps/note/main.css';
+
+@font-face {
+    font-family: Rennie;
+    src: url('../fonts/ReenieBeanie-Regular.ttf');
+}
