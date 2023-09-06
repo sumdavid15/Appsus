@@ -25,6 +25,16 @@ export function MailIndex() {
     setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
+    function onMailClicked(mail, prop) {
+        if(prop === 'isRead') {
+            mail.isRead = true
+        }
+        if(prop === 'isStarred') {
+            mail.isStarred = !mail.isStarred
+        }
+        mailService.save(mail)
+    }
+
     if (!mails) return <div>Loading...</div>
 
   return (
@@ -33,7 +43,7 @@ export function MailIndex() {
       <MailSearchFilter onSetFilter={onSetFilter} filterBy={filterBy} />
       <section className="mail-container">
       <MailSidebar onSetFilter={onSetFilter} filterBy={filterBy} /> 
-      <MailList mails={mails} />
+      <MailList mails={mails} onMailClicked={onMailClicked} />
       </section>
     </section>
   )
