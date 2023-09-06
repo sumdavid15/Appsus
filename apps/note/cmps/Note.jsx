@@ -1,5 +1,6 @@
 import { ColorPicker } from "./ColorPicker.jsx"
 import { utilService } from "../../../services/util.service.js"
+import { TodoList } from "./Todo.jsx"
 
 const { useState, useRef } = React
 
@@ -16,15 +17,21 @@ export function Note({ note, onDeleteNote, onChange }) {
                 return <img src={note.noteContent} alt="" />
             case 'video':
                 return <video src={note.noteContent} controls></video>
+            case 'todo':
+                return < TodoList />
             default:
         }
+    }
+
+    function duplicate() {
+        const { id, ...rest } = note
+        onChange({ ...rest })
     }
 
     return (
         <section className="note-card" style={{ backgroundColor: `${color}`, transform: `rotate(${degRef.current}deg)` }}>
             <h1>{note.noteTitle}</h1>
             {renderNoteContent(note)}
-            <div onClick={() => onDeleteNote(note.id)}><i className="fa-solid fa-trash"></i></div>
             <ColorPicker color={color} onChange={(color) => {
                 setColor(color)
                 onChange({
@@ -32,6 +39,7 @@ export function Note({ note, onDeleteNote, onChange }) {
                     color,
                 })
             }} />
+            <div onClick={() => onDeleteNote(note.id)}><i className="fa-solid fa-trash"></i></div>
             <input type="checkbox" checked={isPinned} onChange={() => {
                 setIsPinned(!isPinned)
                 return onChange({
@@ -39,6 +47,7 @@ export function Note({ note, onDeleteNote, onChange }) {
                     isPinned: !isPinned
                 })
             }} />
+            <div onClick={duplicate}><i className="fa-solid fa-copy"></i></div>
         </section>
     )
 }

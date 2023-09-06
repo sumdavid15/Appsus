@@ -44,6 +44,7 @@ export function NoteAdd({ onCreate }) {
                     <option value="text">Text</option>
                     <option value="img">Image</option>
                     <option value="video">Video</option>
+                    <option value="todo">Todo</option>
                 </select>
                 <ColorPicker color={color} onChange={(color) => setColor(color)} />
                 <input
