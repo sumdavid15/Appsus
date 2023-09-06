@@ -1,11 +1,11 @@
 // note service
-import { storageService } from "../../../services/async-storage.service.js"
 import { utilService } from "../../../services/util.service.js"
+import { asyncStorageService } from "../../../services/async-storage.service.js"
 
 export const noteService = {
-    createNote,
+    saveNote,
 }
 
 function saveNote(note) {
-  
+
 }
