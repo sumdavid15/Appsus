@@ -1,0 +1,60 @@
+.mail-preview {
+    display: flex;
+    align-items: center;
+    padding-block: 0.5em;
+    padding-inline: 1em;
+    cursor: pointer;
+    justify-content: space-between;
+    gap: 1em;
+    border: 1px solid rgba(100, 121, 143, 0.122);
+}
+
+.mail-preview i {
+    margin: 5px;
+}
+
+
+.main-mail-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    /* justify-content: space-between; */
+    width: 100%;
+    min-width: 0;
+}
+
+.mail-from {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+    width: 10em;
+    /* margin-inline-end: 15px; */
+}
+
+.mail-body {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    user-select: none;
+    font-size: 0.9em;
+    color: #555;
+    flex: 1;
+}
+
+.mail-subject {
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* min-width: 10rem; */
+}
+
+.mail-seperator {
+    width: 1px;
+    margin: 0 1em;
+}
+
+.mail-sent-at {
+    margin-inline-start: 15px;
+    text-align: right;
+}

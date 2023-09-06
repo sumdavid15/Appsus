@@ -2,14 +2,14 @@
 
 import { mailService } from "../services/mail.service.js"
 import { MailList } from "../cmps/MailList.jsx"
-import { MailFilter } from "../cmps/MailFilter.jsx"
+import { MailSearchFilter } from "../cmps/MailSearchFilter.jsx"
 
 const { useState, useEffect } = React
 
 export function MailIndex() {
   const [mails, setMails] = useState([])
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilterBy())
-
+    console.log('filterByyy', filterBy);
   useEffect(() => {
     mailService
       .query(filterBy)
@@ -30,7 +30,7 @@ export function MailIndex() {
   return (
     <section className="mail-index">
       <h1>Mail Index</h1>
-      {/* <MailFilter onSetFilter={onSetFilter} filterBy={filterBy} /> */}
+      <MailSearchFilter onSetFilter={onSetFilter} filterBy={filterBy} />
       <MailList mails={mails} />
     </section>
   )

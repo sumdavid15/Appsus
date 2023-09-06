@@ -1,0 +1,10 @@
+/* MQ */
+
+@media (max-width: 770px) {
+    .main-mail-container {
+        flex-direction: column;
+    }
+    .mail-seperator {
+        display: none;
+    }
+}

@@ -1,1 +1,20 @@
  /* mail list */
+.mail-list-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    margin-block-end: 1.5em;
+}
+
+ .mail-list {
+    list-style: none;
+    padding: 0;
+    overflow: auto;
+  }
+
+
+  
+  .mail-list .mail-preview:hover {
+    background: #f5f5f5;
+  }
