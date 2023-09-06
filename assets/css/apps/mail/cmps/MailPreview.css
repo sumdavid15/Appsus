@@ -9,10 +9,22 @@
     border: 1px solid rgba(100, 121, 143, 0.122);
 }
 
+.mail-preview.read {
+    background: #f2f6fc;
+    color: #5f6368;
+}
+
+.mail-preview.read .mail-from {
+    font-weight: normal;
+}
+
+.mail-preview.read .mail-subject {
+    font-weight: normal;
+}
+
 .mail-preview i {
     margin: 5px;
 }
-
 
 .main-mail-container {
     display: flex;
@@ -24,11 +36,20 @@
 }
 
 .mail-from {
+    font-weight: bold;
     overflow: hidden;
     text-overflow: ellipsis;
     user-select: none;
     width: 10em;
     /* margin-inline-end: 15px; */
+}
+
+.mail-subject {
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* min-width: 10rem; */
 }
 
 .mail-body {
@@ -41,20 +62,77 @@
     flex: 1;
 }
 
-.mail-subject {
-    font-weight: bold;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    /* min-width: 10rem; */
-}
-
 .mail-seperator {
     width: 1px;
     margin: 0 1em;
 }
 
 .mail-sent-at {
+    font-size: 0.8em;
     margin-inline-start: 15px;
     text-align: right;
+}
+
+/* EXPENDED */
+
+.mail-expanded {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f2f6fc;
+}
+
+.mail-expanded-header {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: auto;
+}
+
+.fa-solid.fa-expand {
+    position: absolute;
+    right: 1em;
+    padding: 10px;
+}
+
+.fa-solid.fa-expand:hover {
+    transition: all 0.3s ease-out;
+    background-color: rgba(32, 33, 35, 0.059);
+    border-radius: 50%;
+}
+
+.mail-expanded-from {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.mail-expanded-subject {
+    font-weight: bold;
+    margin-block-end: 1.5em;
+}
+
+/* STAR ICON */
+/* // WITH COOL ANIMATION */
+.fa-star.far {
+    color: #555;
+}
+
+.fa-star.fas {
+    animation: star 0.5s ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    color: #f1c40f;
+}
+
+@keyframes star {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

@@ -3,7 +3,12 @@
  .mail-index {
     display: flex;
     flex-direction: column;
-    padding-inline-end: 2em;
+    padding: .5em;
     overflow: hidden;
     height: calc(100vh - 4em);
+ }
+
+ .mail-container {
+    display: flex;
+    flex-direction: row;
  }

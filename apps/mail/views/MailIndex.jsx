@@ -3,13 +3,13 @@
 import { mailService } from "../services/mail.service.js"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailSearchFilter } from "../cmps/MailSearchFilter.jsx"
+import { MailSidebar } from "../cmps/MailSidebar.jsx"
 
 const { useState, useEffect } = React
 
 export function MailIndex() {
   const [mails, setMails] = useState([])
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilterBy())
-    console.log('filterByyy', filterBy);
   useEffect(() => {
     mailService
       .query(filterBy)
@@ -25,13 +25,26 @@ export function MailIndex() {
     setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
+    function onMailClicked(mail, prop) {
+        if(prop === 'isRead') {
+            mail.isRead = true
+        }
+        if(prop === 'isStarred') {
+            mail.isStarred = !mail.isStarred
+        }
+        mailService.save(mail)
+    }
+
     if (!mails) return <div>Loading...</div>
 
   return (
     <section className="mail-index">
       <h1>Mail Index</h1>
       <MailSearchFilter onSetFilter={onSetFilter} filterBy={filterBy} />
-      <MailList mails={mails} />
+      <section className="mail-container">
+      <MailSidebar onSetFilter={onSetFilter} filterBy={filterBy} /> 
+      <MailList mails={mails} onMailClicked={onMailClicked} />
+      </section>
     </section>
   )
 }
