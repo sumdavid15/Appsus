@@ -4,7 +4,7 @@ export function NoteAdd({ onCreate }) {
     const [noteTitle, setNoteTitle] = useState('')
     const [noteContent, setNoteContent] = useState('')
     const [type, setType] = useState('text')
-    const [color, setColor] = useState('black')
+    const [color, setColor] = useState('#cfc')
     const [isPinned, setIsPinned] = useState(false)
 
     function addNote() {
@@ -16,6 +16,15 @@ export function NoteAdd({ onCreate }) {
             isPinned,
         }
         onCreate(note)
+        clearInput()
+    }
+
+    function clearInput() {
+        setNoteTitle('')
+        setNoteContent('')
+        setType('text')
+        setColor('#cfc')
+        setIsPinned(false)
     }
 
     function _placeholderType(type) {
@@ -35,9 +44,10 @@ export function NoteAdd({ onCreate }) {
                     <option value="video">Video</option>
                 </select>
                 <select value={color} onChange={(e) => setColor(e.target.value)}>
-                    <option value="black">Black</option>
-                    <option value="red">Red</option>
-                    <option value="blue">Blue</option>
+                    <option value="#cfc">1</option>
+                    <option value="#ccf">2</option>
+                    <option value="#ffc">3</option>
+                    <option value="rgb(173, 216, 230)">4</option>
                 </select>
                 <input
                     type="checkbox"

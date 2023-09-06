@@ -10,5 +10,5 @@ export const noteService = {
 }
 
 function saveNote(note) {
-    asyncStorageService.post(NOTE_KEY, note)
+    return asyncStorageService.post(NOTE_KEY, note)
 }
