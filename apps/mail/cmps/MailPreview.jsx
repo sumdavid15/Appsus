@@ -15,6 +15,16 @@
 // }
 
 export function MailPreview({ mail }) {
+
+    function formatTime(time) {
+        // formate timestamp to 11/11/23
+        const date = new Date(time)
+        const day = date.getDate()
+        const month = date.getMonth() + 1
+        const year = date.getFullYear()
+        return `${day}/${month}/${year}`
+    }
+
     return (
         <li className="mail-preview">
             <span>
@@ -26,7 +36,7 @@ export function MailPreview({ mail }) {
                 <span className="mail-seperator">-</span>
                 <span className="mail-body">{mail.body}</span>
             </div>
-            <span className="mail-sent-at">{mail.sentAt}</span>
+            <span className="mail-sent-at">{formatTime(mail.sentAt)}</span>
         </li>
     )
 }

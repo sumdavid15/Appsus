@@ -5,6 +5,7 @@
 /* CMPS */
 @import './cmps/MailList.css';
 @import './cmps/MailPreview.css';
+@import './cmps/MailSideBar.css';
 
 /* MQ */
 @import './mq.css';

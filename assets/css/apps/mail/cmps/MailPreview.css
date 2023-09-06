@@ -55,6 +55,7 @@
 }
 
 .mail-sent-at {
+    font-size: 0.8em;
     margin-inline-start: 15px;
     text-align: right;
 }
