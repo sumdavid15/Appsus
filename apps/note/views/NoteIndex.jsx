@@ -29,7 +29,9 @@ export function NoteIndex() {
     return (
         <div className="note-index-container">
             <NoteAdd onCreate={addNote} />
-            <NoteList notes={notes} onDeleteNote={deleteNote} onChange={saveNote} />
+            <NoteList notes={notes.sort((a, b) => {
+                return b.isPinned - a.isPinned;
+            })} onDeleteNote={deleteNote} onChange={saveNote} />
         </div>
     )
 }

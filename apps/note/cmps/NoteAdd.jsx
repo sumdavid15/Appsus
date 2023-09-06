@@ -1,4 +1,4 @@
-import { ColorNote } from "./ColorNote.jsx"
+import { ColorPicker } from "./ColorPicker.jsx"
 
 const { useState } = React
 
@@ -45,7 +45,7 @@ export function NoteAdd({ onCreate }) {
                     <option value="img">Image</option>
                     <option value="video">Video</option>
                 </select>
-                <ColorNote color={color} onChange={(color) => setColor(color)} />
+                <ColorPicker color={color} onChange={(color) => setColor(color)} />
                 <input
                     type="checkbox"
                     checked={isPinned}
