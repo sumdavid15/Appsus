@@ -1,4 +1,13 @@
+import { NoteAdd } from "../cmps/NoteAdd.jsx";
 
 export function NoteIndex() {
-    return <div>note app</div>
+
+    function createNote(note) {
+        console.log(note);
+    }
+
+    return (
+        <NoteAdd onCreate={createNote} />
+    )
+
 }

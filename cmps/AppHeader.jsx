@@ -12,6 +12,8 @@ export function AppHeader() {
         <Link to="/">
             <h3>LOGO!</h3>
         </Link>
+        {isMail && <h3>Mail</h3>}
+        {isNote && <h3>Note</h3>}
         <nav>
 
             <NavLink to="/">Home</NavLink>
