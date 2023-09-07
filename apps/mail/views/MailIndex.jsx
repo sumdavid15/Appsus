@@ -9,9 +9,8 @@ import { MailSortBy } from "../cmps/MailSortBy.jsx"
 
 const { useState, useEffect } = React
 
-export function MailIndex() {
+export function MailIndex({ onSetFilter, filterBy}) {
   const [mails, setMails] = useState([])
-  const [filterBy, setFilterBy] = useState(mailService.getDefaultFilterBy())
   const [sortBy, setSortBy] = useState(mailService.getDefaultSortBy())
   const [showModal, setShowModal] = useState(false)
 
@@ -27,9 +26,9 @@ export function MailIndex() {
       })
   }, [filterBy, sortBy])
 
-  function onSetFilter(filterBy) {
-    setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }))
-  }
+  // function onSetFilter(filterBy) {
+  //   setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }))
+  // }
 
   function onSetSortBy(sortBy) {
     setSortBy((prevSort) => ({ ...prevSort, ...sortBy }))
@@ -82,7 +81,6 @@ export function MailIndex() {
       <MailAddModal handleModal={handleModal} showModal={showModal} />
       
       {/* <h1>Mail Index</h1> */}
-      {/* <MailSearchFilter onSetFilter={onSetFilter} filterBy={filterBy} /> */}
       {/* <br /> */}
 
       <section className="mail-container">
