@@ -89,6 +89,26 @@
     .mail-list {
         height: 80vh;
     }
+
+    .app-header img {
+        width: 30px;
+        height: 30px;
+        margin: 0 1em;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo span {
+        font-size: .9em;
+        color: #3c3c3c;
+    }
+
+    .search__input {
+        width: 37vw;
+    }
 }
 
 @media (min-width: 770px) {

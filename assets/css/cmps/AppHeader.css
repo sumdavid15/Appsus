@@ -38,7 +38,7 @@ nav a.active {
     padding: 0.7rem 1rem;
     border-radius: 30px;
     width: 50vw;
-    transition: all ease-in-out 0.5s;
+    transition: all ease-in-out .2s;
     margin-right: -2rem;
 }
 
