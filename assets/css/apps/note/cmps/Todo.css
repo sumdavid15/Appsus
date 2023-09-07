@@ -1,0 +1,13 @@
+.todolist-container ul{
+margin: 0;
+padding: 0;
+}
+
+.todo-list-content{
+    width: 50px;
+}
+
+.todo-list {
+    display: flex;
+    justify-content: space-between;
+}

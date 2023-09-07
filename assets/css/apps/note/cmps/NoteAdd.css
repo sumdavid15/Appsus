@@ -1,10 +1,38 @@
 .note-input-container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
+
+    border-radius: 5px;
+    border: 1px solid rgba(33, 33, 33, .4);
+    box-shadow: 4px 4px 2px rgba(33, 33, 33, .4);
+    transition: all 300ms;
 }
 
 .note-input-container form{
     display: flex;
+    gap: 10px;
 }
+.note-input-container input {
+    border: none;
+    padding: 10px;
+    transition: all 300ms;
+}
+
+.note-input-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-note-action-container{
+    display: flex;
+    gap: 20px;
+}
+
+.add-note-type-btn {
+    display: flex;
+    gap: 10px;
+}
+

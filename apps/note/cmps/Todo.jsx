@@ -22,7 +22,7 @@ export function TodoList() {
     }
 
     return (
-        <div>
+        <section className='todolist-container'>
             <div>
                 <input
                     type="text"
@@ -32,18 +32,22 @@ export function TodoList() {
                 />
                 <button onClick={addTask}>Add</button>
             </div>
-            <ul>
+            <div>
                 {tasks.map((task, index) => (
-                    <li key={index} style={{textTransform: 'line-through'}}>
+                    <div className="todo-list" key={index} style={{ textTransform: 'line-through' }}>
                         <input
                             type="checkbox"
                             checked={true}
                             onChange={(e) => setIsPinned(e.target.checked)}
                         />
-                        {task} <button onClick={() => deleteTask(index)}>Delete</button>
-                    </li>
+                        <div className='todo-list-content'>{task}</div>
+                        <div onClick={() => deleteTask(index)}><i className="fa-solid fa-delete-left"></i></div>
+                    </div>
                 ))}
-            </ul>
-        </div>
+            </div>
+        </section>
     );
 };
+
+
+

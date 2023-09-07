@@ -1,5 +1,18 @@
+.note-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 240px;
+    min-height: 200px;
+    border-radius: 5px;
+    gap: 10px;
+    border: 1px solid rgba(114, 112, 112, 0.4);
+    transition: all 300ms;
+}
+
 .note-card:hover {
-    transform: scale(1.01) rotate(0) !important;
+    box-shadow: 1px 1px 3px rgba(33, 33, 33, .4);
 }
 
 .note-card h1 {
@@ -7,19 +20,21 @@
     font-size: 24px;
 }
 
+
 .note-card p {
     font-family: 'Rennie';
     margin: 0;
     font-size: 24px;
 }
 
-.note-action-button-container{
+.note-action-button-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
     margin-top: auto;
 }
+
 .color-picker {
     display: flex;
     gap: 4px;
@@ -27,7 +42,7 @@
 
 .pinned {
     position: absolute;
-    top:0;
+    top: 0;
     right: 0;
 }
 
@@ -43,6 +58,20 @@
     cursor: pointer;
 }
 
+.note-card:hover .note-action-section {
+    opacity: 1;
+}
+
+.note-action-section {
+    opacity: 0;
+    transition: all 300ms;
+    margin-top: auto;
+}
+
 .color-picker-btn.selected {
     border: 2px solid rgba(0, 0, 0, 0.263);
+}
+
+.note-action-section.hover {
+    opacity: 1;
 }
