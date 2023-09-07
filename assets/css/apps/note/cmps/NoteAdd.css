@@ -15,9 +15,9 @@
     display: flex;
     gap: 10px;
 }
-.note-input-container input {
+.note-input-container textarea {
+    font-size: 1.1rem;
     border: none;
-    padding: 10px;
     transition: all 300ms;
 }
 

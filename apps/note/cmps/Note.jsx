@@ -10,6 +10,15 @@ export function Note({ note, onDeleteNote, onChange }) {
 
     // const degRef = useRef(utilService.getRandomIntInclusive(-2, 2))
 
+    function getVideoId() {
+        const url = note.noteContent
+        const pattern = /v=([a-zA-Z0-9_-]+)/
+        let match = url.match(pattern)
+
+        if (!match) match = ''
+        return match[1]
+    }
+
     function renderNoteContent(note) {
         switch (note.type) {
             case 'text':
@@ -17,7 +26,9 @@ export function Note({ note, onDeleteNote, onChange }) {
             case 'img':
                 return <img src={note.noteContent} alt="" />
             case 'video':
-                return <video src={note.noteContent} controls></video>
+                return <iframe allow="fullscreen" 
+                    src={`https://www.youtube.com/embed/${getVideoId()}`}>
+                </iframe>
             case 'todo':
                 return < TodoList />
             default:
@@ -60,5 +71,5 @@ export function Note({ note, onDeleteNote, onChange }) {
     )
 }
 
-        /* <textarea type="text" value={title} onChange={(ev=>setTitle(ev.target.value))} /> */
-                    /* <div title='Edit Note' onClick={() => setIsEdit(true)}><i className="fa-solid fa-pen-to-square"></i></div> */
+/* <textarea type="text" value={title} onChange={(ev=>setTitle(ev.target.value))} /> */
+/* <div title='Edit Note' onClick={() => setIsEdit(true)}><i className="fa-solid fa-pen-to-square"></i></div> */

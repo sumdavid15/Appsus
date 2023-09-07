@@ -1,4 +1,5 @@
 import { ColorPicker } from "./ColorPicker.jsx"
+import { TodoList } from "./Todo.jsx"
 
 const { useState } = React
 
@@ -38,8 +39,9 @@ export function NoteAdd({ onCreate }) {
     return (
         <section className="note-input-container" style={{ backgroundColor: `${color}` }}>
             <form onSubmit={addNote}>
-                <input style={{ backgroundColor: `${color}` }} value={noteTitle} onInput={(e) => setNoteTitle(e.target.value)} placeholder='Title' required />
-                <input style={{ backgroundColor: `${color}` }} value={noteContent} onInput={(e) => setNoteContent(e.target.value)} placeholder={_placeholderType(type)} required />
+                <textarea style={{ backgroundColor: `${color}`, resize: 'none' }} value={noteTitle} onInput={(e) => setNoteTitle(e.target.value)} placeholder='Title' required />
+                {type !== 'todo' && < textarea style={{ backgroundColor: `${color}`, resize: 'none' }} value={noteContent} onInput={(e) => setNoteContent(e.target.value)} placeholder={_placeholderType(type)} required />}
+                {type === 'todo' && < TodoList />}
                 <section className='add-note-action-container'>
                     <div className="add-note-type-btn">
                         <div onClick={() => setType('text')}><i className="fa-solid fa-font"></i></div>
@@ -53,7 +55,7 @@ export function NoteAdd({ onCreate }) {
                     </div>
                     <div>
                         <ColorPicker color={color} onChange={(color) => setColor(color)} />
-                        <input className='pinned'
+                        <input title='Pin note' className='pinned'
                             type="checkbox"
                             checked={isPinned}
                             onChange={(e) => setIsPinned(e.target.checked)}

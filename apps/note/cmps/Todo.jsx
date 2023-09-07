@@ -24,7 +24,7 @@ export function TodoList() {
     return (
         <section className='todolist-container'>
             <div>
-                <input
+                <input className='todolist-input'
                     type="text"
                     placeholder="Add a task"
                     value={task}
