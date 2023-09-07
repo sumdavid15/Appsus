@@ -4,14 +4,19 @@
     flex-direction: column;
     flex: 1;
     overflow: hidden;
-    margin-block-end: 1.5em;
     justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    /* padding-inline-start: 0px; */
 }
 
  .mail-list {
     list-style: none;
     padding: 0;
     overflow: auto;
+    height: 75vh;
+    margin-block: 0;
+    border-radius: 10px;
   }
 
   .mail-list .mail-preview:hover {
@@ -19,3 +24,17 @@
     transition: all 0.2s ease-in-out;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   }
+
+  /* SCROOL BAR */
+  ::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(173, 216, 230, 0.634);
+    border-radius: 10px;
+}

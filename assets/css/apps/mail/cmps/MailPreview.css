@@ -22,10 +22,6 @@
     font-weight: normal;
 }
 
-.mail-preview i {
-    margin: 5px;
-}
-
 .main-mail-container {
     display: flex;
     flex-direction: row;
@@ -40,8 +36,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     user-select: none;
-    width: 10em;
-    /* margin-inline-end: 15px; */
+    width: 15em;
 }
 
 .mail-subject {
@@ -49,7 +44,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    /* min-width: 10rem; */
 }
 
 .mail-body {
@@ -57,9 +51,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     user-select: none;
-    font-size: 0.9em;
     color: #555;
-    flex: 1;
 }
 
 .mail-seperator {
@@ -104,12 +96,12 @@
 
 .mail-expanded-from {
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 .mail-expanded-subject {
     font-weight: bold;
-    margin-block-end: 1.5em;
+    margin-block-end: 1.1em;
 }
 
 /* STAR ICON */

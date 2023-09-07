@@ -8,7 +8,6 @@ export function MailSearchFilter({ onSetFilter, filterBy }) {
 
     useEffect(() => {
         const newFilterBy = { ...filterBy, txt: searchBy }
-        console.log('newFilterBy', newFilterBy);
         onSetFilter(newFilterBy)
     }, [searchBy])
 

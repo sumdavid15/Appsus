@@ -7,4 +7,133 @@
     .mail-seperator {
         display: none;
     }
+
+    .sidebar-container {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .mail-sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: whitesmoke;
+        width: 100%;
+    }
+    .sidebar-container li span {
+        display: none;
+    }
+
+    .sidebar-container li {
+        color:rgba(96, 96, 96, 0.641)
+    }
+
+    .sidebar-container li.active {
+        color: #1ca4ffd7;
+        transition: all .5s ease-in-out;
+    }
+    
+    .mail-subject {
+        font-size: 0.8em;
+    }
+    
+    .mail-body {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        user-select: none;
+        font-size: 0.7em;
+        color: #555;
+
+    }
+
+    .mail-index {
+        padding: 0;
+    }
+
+    .mail-expanded-from {
+        font-size: 1em;
+    }
+
+    .mail-expanded-subject {
+        font-size: 0.8em;
+    }
+
+    .mail-expanded-body {
+        font-size: 0.7em;
+    }
+
+    .mail-preview i {
+        margin: 4px;
+    }
+
+    .mail-preview {
+        gap: 0.5em;
+    }
+
+    .mail-sent-at {
+        font-size: 0.7em;
+        margin-inline-start: 0;
+        text-align: right;
+    }
+
+    ::-webkit-scrollbar {
+        width: 7px;
+    }
+}
+
+@media (min-width: 770px) {
+    .sidebar-container li {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        margin-inline-end: 10px;
+        margin-bottom: 0.25em;
+        transition: background-color .25s ease-in-out;
+        padding: 1em;
+    }
+
+    .mail-sidebar {
+        width: 4em;
+        transition: width 0.4s ease-in-out;
+    }
+
+    .sidebar-container li span {
+        opacity: 0;
+        transition: opacity .25s ease-in-out;
+    }
+    .sidebar-container:hover li span {
+        opacity: 1;
+        transition: opacity .25s ease-in-out;
+      }
+      .sidebar-container li i {
+        margin-inline-end: 1em;
+    }
+
+    .mail-sidebar:hover {
+        width:9em;
+        transition: width 0.4s ease-in-out;
+    }
+
+    .sidebar-container li:hover {
+        background-color: rgba(32, 33, 36, 0.059);
+        transition: background-color .25s ease-in-out;
+    }
+
+    .sidebar-container li.active {
+        background: lightblue;
+    }
+
+    .add-btn {
+        background-color: #c2e7ff;
+        cursor: pointer;
+    }
+
+    .mail-body {
+        flex: 1;
+        font-size: 0.9em;
+    }
+
+    .mail-preview i {
+        margin: 5px;
+    }
 }
