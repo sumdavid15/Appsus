@@ -306,11 +306,14 @@ export const mailService = {
   getEmptyEmail,
   getDefaultFilterBy,
   getLoggedInUser,
+  getDefaultSortBy,
 }
 
-function query(filterBy = {}) {
+function query(filterBy = {}, sortBy = {}) {
+  console.log('serviceQuery',filterBy , sortBy);
   return asyncStorageService.query(EMAILS_KEY).then((emails) => {
     emails = _filterEmails(emails, filterBy)
+    emails = _sortEmails(emails, sortBy)
     return emails
   })
 }
@@ -389,15 +392,24 @@ function _createEmail() {
 
 function _filterEmails(emails, filterBy) {
   const { status, txt, isRead, isStarred, labels } = filterBy
-  console.log(status);
+  console.log('sss',status);
+// handle if status is trash, return all the emails that removedAt is not null
+  if (status === 'trash') {
+    return emails.filter((email) => {
+      return email.removedAt !== null
+    })
+  }
+
+if (status === 'sent') {
+  return emails.filter((email) => {
+    if (email.from === loggedinUser.email && email.sentAt !== null) return email
+  })
+}
+
   let filteredEmails = emails.filter((email) => {
     return email.status === status
   })
 
-    // filteredEmails = filteredEmails.filter((email) => {
-    //     if (email.removedAt) return false
-    //     return true
-    // })
 
   if (txt) {
     filteredEmails = filteredEmails.filter((email) => {
@@ -426,5 +438,36 @@ function _filterEmails(emails, filterBy) {
       })
     })
   }
+
+  filteredEmails = filteredEmails.filter((email) => {
+    return email.removedAt === null
+  })
+  console.log('filteredEmails',filteredEmails);
   return filteredEmails
+}
+
+function getDefaultSortBy() {
+  return {
+    sortByType: "date",
+    isAsc: false,
+  }
+}
+
+function _sortEmails(emails, sortBy) {
+  console.log('serviceSort',sortBy , emails);
+  const { sortByType, isAsc } = sortBy
+  const sortedEmails = emails
+  if (sortByType === "date") {
+    sortedEmails.sort((email1, email2) => {
+      if (isAsc) return email1.sentAt - email2.sentAt
+      else return email2.sentAt - email1.sentAt
+    })
+  }
+  if (sortByType === "title") {
+    sortedEmails.sort((email1, email2) => {
+      if (isAsc) return email1.subject.localeCompare(email2.subject)
+      else return email2.subject.localeCompare(email1.subject)
+    })
+  }
+  return sortedEmails
 }

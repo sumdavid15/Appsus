@@ -1,6 +1,10 @@
 /* MQ */
 
 @media (max-width: 770px) {
+    .mail-add-modal {
+        width: 350px;
+        font-size: 0.8em;
+    }
     .main-mail-container {
         flex-direction: column;
     }
@@ -11,6 +15,7 @@
     .sidebar-container {
         display: flex;
         justify-content: space-evenly;
+        background-color: #f6f8fc;
     }
 
     .mail-sidebar {
@@ -80,6 +85,10 @@
     ::-webkit-scrollbar {
         width: 7px;
     }
+
+    .mail-list {
+        height: 80vh;
+    }
 }
 
 @media (min-width: 770px) {
@@ -136,4 +145,19 @@
     .mail-preview i {
         margin: 5px;
     }
+
+    .sortby-container {
+        font-size: 2em;
+        padding: 10px;
+    }
+
+    .radio-inputs .radio input + .name {
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      .radio-inputs .radio {
+        font-size: 1em;
+      }
+    
 }
