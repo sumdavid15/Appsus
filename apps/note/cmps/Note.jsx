@@ -7,12 +7,16 @@ const { useState, useRef } = React
 export function Note({ note, onDeleteNote, onChange }) {
     const [color, setColor] = useState(note.color)
     const [isPinned, setIsPinned] = useState(note.isPinned)
+    const [title, setTitle] = useState(note.noteTitle)
+    const [isEdit, setIsEdit] = useState(true)
+
+    console.log(note);
     const degRef = useRef(utilService.getRandomIntInclusive(-2, 2))
 
     function renderNoteContent(note) {
         switch (note.type) {
             case 'text':
-                return <p>{note.noteContent}</p>
+                return <p contenteditable={`${isEdit}`}>{note.noteContent}</p>
             case 'img':
                 return <img src={note.noteContent} alt="" />
             case 'video':
@@ -28,9 +32,11 @@ export function Note({ note, onDeleteNote, onChange }) {
         onChange({ ...rest })
     }
 
+    const rotateCondition = (note.type !== 'todo') ? `rotate(${degRef.current}deg)` : ''
     return (
-        <section className="note-card" style={{ backgroundColor: `${color}`, transform: `rotate(${degRef.current}deg)` }}>
-            <h1>{note.noteTitle}</h1>
+        <section className="note-card" style={{ backgroundColor: `${color}`, transform: rotateCondition }}>
+            {/* <textarea type="text" value={title} onChange={(ev=>setTitle(ev.target.value))} /> */}
+            <h1 contenteditable={`${isEdit}`}>{note.noteTitle}</h1>
             {renderNoteContent(note)}
             <div className="note-action-button-container">
                 <ColorPicker color={color} onChange={(color) => {
@@ -49,7 +55,8 @@ export function Note({ note, onDeleteNote, onChange }) {
                     })
                 }} />
                 <div title='Duplicate Note' onClick={duplicate}><i className="fa-solid fa-copy"></i></div>
+                {/* <div title='Edit Note' onClick={() => setIsEdit(true)}><i className="fa-solid fa-pen-to-square"></i></div> */}
             </div>
-        </section>
+        </section >
     )
 }
