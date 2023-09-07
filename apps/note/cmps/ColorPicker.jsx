@@ -7,7 +7,7 @@ function ColorBtn({ currentColor, color, onChange }) {
         {color === currentColor && <i className="fa-solid fa-check"></i>}
     </button>
 }
-
+{/* <i class="fa-solid fa-palette"></i> */}
 export function ColorPicker({ color, onChange }) {
     return (
         <div className="color-picker">

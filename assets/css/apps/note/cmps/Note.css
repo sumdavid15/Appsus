@@ -4,7 +4,7 @@
     flex-direction: column;
     padding: 10px;
     width: 240px;
-    min-height: 200px;
+    min-height: 100px;
     border-radius: 5px;
     gap: 10px;
     border: 1px solid rgba(114, 112, 112, 0.4);
@@ -22,9 +22,9 @@
 
 
 .note-card p {
-    font-family: 'Rennie';
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    font-size: 24px;
+    font-size: 1.125rem;
 }
 
 .note-action-button-container {
