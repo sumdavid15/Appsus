@@ -66,7 +66,7 @@ export function AppHeader({ onSetFilter, filterBy }) {
             <div>
             <NavLink to="mail" onClick={toggleMenu}>
               <section>
-                <img src="/img/gmail.png" alt="" />
+                <img src="img/gmail.png" alt="" />
                 <span>Mail</span>
               </section>
             </NavLink>
