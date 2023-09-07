@@ -6,8 +6,9 @@ export function NoteAdd({ onCreate }) {
     const [noteTitle, setNoteTitle] = useState('')
     const [noteContent, setNoteContent] = useState('')
     const [type, setType] = useState('text')
-    const [color, setColor] = useState('#cfc')
+    const [color, setColor] = useState('white')
     const [isPinned, setIsPinned] = useState(false)
+    const [todo, setTodo] = useState(false)
 
     function addNote() {
         const note = {
@@ -25,7 +26,7 @@ export function NoteAdd({ onCreate }) {
         setNoteTitle('')
         setNoteContent('')
         setType('text')
-        setColor('#cfc')
+        setColor('white')
         setIsPinned(false)
     }
 
@@ -34,26 +35,67 @@ export function NoteAdd({ onCreate }) {
         if (type === 'img') return 'Enter img url'
         if (type === 'video') return 'Enter video url'
     }
-
     return (
         <section className="note-input-container" style={{ backgroundColor: `${color}` }}>
             <form onSubmit={addNote}>
-                <input value={noteTitle} onInput={(e) => setNoteTitle(e.target.value)} placeholder='Title' required />
-                <input value={noteContent} onInput={(e) => setNoteContent(e.target.value)} placeholder={_placeholderType(type)} required />
-                <select value={type} onChange={(e) => setType(e.target.value)}>
-                    <option value="text">Text</option>
-                    <option value="img">Image</option>
-                    <option value="video">Video</option>
-                    <option value="todo">Todo</option>
-                </select>
-                <ColorPicker color={color} onChange={(color) => setColor(color)} />
-                <input
-                    type="checkbox"
-                    checked={isPinned}
-                    onChange={(e) => setIsPinned(e.target.checked)}
-                />
-                <button>Add</button>
-            </form>
-        </section>
+                <input style={{ backgroundColor: `${color}` }} value={noteTitle} onInput={(e) => setNoteTitle(e.target.value)} placeholder='Title' required />
+                <input style={{ backgroundColor: `${color}` }} value={noteContent} onInput={(e) => setNoteContent(e.target.value)} placeholder={_placeholderType(type)} required />
+                <section className='add-note-action-container'>
+                    <div className="add-note-type-btn">
+                        <div onClick={() => setType('text')}><i className="fa-solid fa-font"></i></div>
+                        <div onClick={() => setType('img')}><i className="fa-regular fa-image"></i></div>
+                        <div onClick={() => setType('video')}><i className="fa-solid fa-video"></i></div>
+                        <div onClick={() => {
+                            setType('todo')
+                            setTodo(true)
+                        }
+                        }><i className="fa-regular fa-rectangle-list"></i></div>
+                    </div>
+                    <div>
+                        <ColorPicker color={color} onChange={(color) => setColor(color)} />
+                        <input className='pinned'
+                            type="checkbox"
+                            checked={isPinned}
+                            onChange={(e) => setIsPinned(e.target.checked)}
+                        />
+                    </div>
+                    <button>Add</button>
+                </section>
+            </form >
+        </section >
     )
 }
+// return (
+//     <section className="note-input-container" style={{ backgroundColor: `${color}` }}>
+//         <form onSubmit={addNote}>
+//             <input value={noteTitle} onInput={(e) => setNoteTitle(e.target.value)} placeholder='Title' required />
+//             <input value={noteContent} onInput={(e) => setNoteContent(e.target.value)} placeholder={_placeholderType(type)} required />
+//             <select value={type} onChange={(e) => setType(e.target.value)}>
+//                 <option value="text">Text</option>
+//                 <option value="img">Image</option>
+//                 <option value="video">Video</option>
+//                 <option value="todo">Todo</option>
+//             </select>
+//             <ColorPicker color={color} onChange={(color) => setColor(color)} />
+//             <input
+//                 type="checkbox"
+//                 checked={isPinned}
+//                 onChange={(e) => setIsPinned(e.target.checked)}
+//             />
+//             <button>Add</button>
+//         </form>
+//     </section>
+// )
+
+
+    // return (
+    //     <section className="note-input-container" style={{ backgroundColor: `${color}` }}>
+    //         <input value={noteTitle} onInput={(e) => setNoteTitle(e.target.value)} placeholder='Title' required />
+    //         <section className="add-note-type-btn">
+    //             <div onClick={() => setType('text')}><i className="fa-solid fa-font"></i></div>
+    //             <div onClick={() => setType('img')}><i className="fa-regular fa-image"></i></div>
+    //             <div onClick={() => setType('video')}><i className="fa-solid fa-video"></i></div>
+    //             <div onClick={() => setType('todo')}><i className="fa-regular fa-rectangle-list"></i></div>
+    //         </section>
+    //     </section>
+    // )
