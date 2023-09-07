@@ -1,24 +1,199 @@
 header {
-
     background: #f6f8fc;
 }
 
 .app-header {
     display: flex;
     justify-content: space-between;
-    padding: 20px 0;
+    /* padding: 20px 0; */
+    align-items: center;
+    padding: 10px;
 }
 
 nav a {
-    margin: .5em;
+    margin: 0.5em;
 }
 
 nav a:active {
-    color: purple;
+    color: #3c3c3c;
 }
 
 nav a.active {
-    color: darkblue;
-    font-weight: bold;
-    text-decoration: overline;
+    color: #3c3c3c;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.search__input {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #ffffff;
+    border: none;
+    color: #3c3c3c;
+    padding: 0.7rem 1rem;
+    border-radius: 30px;
+    width: 50vw;
+    transition: all ease-in-out 0.5s;
+    margin-right: -2rem;
+}
+
+.search__input:hover,
+.search__input:focus {
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+}
+
+.search__input:focus {
+    outline: none;
+    background-color: #ffffff;
+}
+
+.search__input::-webkit-input-placeholder {
+    font-weight: 100;
+    color: #b4b4b4;
+}
+
+.search__button {
+    border: none;
+    background-color: transparent;
+    margin-top: 0.1em;
+}
+
+.search__button:hover {
+    cursor: pointer;
+}
+
+.search__icon {
+    height: 1.3em;
+    width: 1.3em;
+    fill: #b4b4b4;
+}
+
+.menu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+}
+.line {
+    fill: none;
+    stroke: black;
+    stroke-width: 6;
+    transition:
+        stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+        stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+.line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+}
+.line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+.opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+.opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+}
+.opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+/* Inside your existing CSS file */
+/* Modal styles */
+.modal-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modal-icon {
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+/* Add any other modal styles you need */
+
+.menu-container {
+    font-size: 0.85em;
+    color: rgba(0, 0, 0, 0.75);
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    padding: 1em;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow:
+        0 1px 2px 0 rgba(60, 64, 67, 0.3),
+        0 2px 6px 2px rgba(60, 64, 67, 0.15);
+    right: 50px;
+    z-index: 999;
+    text-align: center;
+}
+
+.menu-container a {
+    display: block;
+    margin: 0.5rem 0;
+}
+
+.menu-container img {
+    width: 40px;
+    height: 40px;
+}
+
+.menu-container section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.app-header img {
+    width: 40px;
+    height: 40px;
+    margin: 0 1em;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo span {
+    font-size: 1.3em;
+    color: #3c3c3c;
 }
