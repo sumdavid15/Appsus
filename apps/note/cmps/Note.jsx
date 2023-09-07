@@ -7,7 +7,7 @@ const { useState, useRef } = React
 export function Note({ note, onDeleteNote, onChange }) {
     const [color, setColor] = useState(note.color)
     const [isPinned, setIsPinned] = useState(note.isPinned)
-    const degRef = useRef(utilService.getRandomIntInclusive(-4, 4))
+    const degRef = useRef(utilService.getRandomIntInclusive(-2, 2))
 
     function renderNoteContent(note) {
         switch (note.type) {
@@ -32,22 +32,24 @@ export function Note({ note, onDeleteNote, onChange }) {
         <section className="note-card" style={{ backgroundColor: `${color}`, transform: `rotate(${degRef.current}deg)` }}>
             <h1>{note.noteTitle}</h1>
             {renderNoteContent(note)}
-            <ColorPicker color={color} onChange={(color) => {
-                setColor(color)
-                onChange({
-                    ...note,
-                    color,
-                })
-            }} />
-            <div onClick={() => onDeleteNote(note.id)}><i className="fa-solid fa-trash"></i></div>
-            <input type="checkbox" checked={isPinned} onChange={() => {
-                setIsPinned(!isPinned)
-                return onChange({
-                    ...note,
-                    isPinned: !isPinned
-                })
-            }} />
-            <div onClick={duplicate}><i className="fa-solid fa-copy"></i></div>
+            <div className="note-action-button-container">
+                <ColorPicker color={color} onChange={(color) => {
+                    setColor(color)
+                    onChange({
+                        ...note,
+                        color,
+                    })
+                }} />
+                <div title='Delete Note' onClick={() => onDeleteNote(note.id)}><i className="fa-solid fa-trash"></i></div>
+                <input className='pinned' type="checkbox" checked={isPinned} onChange={() => {
+                    setIsPinned(!isPinned)
+                    return onChange({
+                        ...note,
+                        isPinned: !isPinned
+                    })
+                }} />
+                <div title='Duplicate Note' onClick={duplicate}><i className="fa-solid fa-copy"></i></div>
+            </div>
         </section>
     )
 }

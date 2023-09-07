@@ -1,3 +1,4 @@
+@import 'cmps/Note.css';
 @import 'cmps/NoteAdd.css';
-@import 'cmps/NoteList.css';
 @import 'cmps/NoteIndex.css';
+@import 'cmps/NoteList.css';

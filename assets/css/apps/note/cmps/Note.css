@@ -1,0 +1,48 @@
+.note-card:hover {
+    transform: scale(1.01) rotate(0) !important;
+}
+
+.note-card h1 {
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.note-card p {
+    font-family: 'Rennie';
+    margin: 0;
+    font-size: 24px;
+}
+
+.note-action-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: auto;
+}
+.color-picker {
+    display: flex;
+    gap: 4px;
+}
+
+.pinned {
+    position: absolute;
+    top:0;
+    right: 0;
+}
+
+.color-picker-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    width: 24px;
+    height: 24px;
+    border: none;
+    color: rgba(0, 0, 0, 0.488);
+    cursor: pointer;
+}
+
+.color-picker-btn.selected {
+    border: 2px solid rgba(0, 0, 0, 0.263);
+}
