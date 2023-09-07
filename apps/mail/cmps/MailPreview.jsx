@@ -20,12 +20,10 @@ export function MailPreview({ mail, onMailClicked }) {
   const [isStarred, setIsStarred] = useState(false)
 
   useEffect(() => {
-    console.log("isExpanded", isExpanded)
   }, [isExpanded])
 
-    useEffect(() => {
-        console.log('isStarred', isStarred);
-    }, [isStarred])
+  useEffect(() => {
+  }, [isStarred])
 
   function formatTime(time) {
     // formate timestamp to 11/11/23
@@ -38,13 +36,11 @@ export function MailPreview({ mail, onMailClicked }) {
 
   function onStarClick(ev, mail) {
     ev.stopPropagation()
-    console.log("star clicked", mail.id);
-    onMailClicked(mail, "isStarred")
     setIsStarred(!isStarred)
+    onMailClicked(mail, "isStarred")
   }
 
-// if no mails, show no mails
-
+  // if no mails, show no mails
 
   return (
     <React.Fragment>
@@ -73,7 +69,7 @@ export function MailPreview({ mail, onMailClicked }) {
       {isExpanded && (
         <div className="mail-expanded">
           <div className="mail-expanded-header">
-          <i className="fa-solid fa-expand"></i>
+            <i className="fa-solid fa-expand"></i>
             <span className="mail-expanded-from">{mail.from}</span>
             <span className="mail-expanded-subject">{mail.subject}</span>
           </div>
@@ -82,18 +78,4 @@ export function MailPreview({ mail, onMailClicked }) {
       )}
     </React.Fragment>
   )
-}
-
-{
-  /* <span>
-                <i className="fa-solid fa-star"></i>
-            </span>
-            <div className="main-mail-container">
-                <span className="mail-from">{mail.from}</span>
-                <span className="mail-subject">{mail.subject}</span>
-                <span className="mail-seperator">-</span>
-                <span className="mail-body">{mail.body}</span>
-            </div>
-            <span className="mail-sent-at">{formatTime(mail.sentAt)}</span>
-        </li> */
 }
