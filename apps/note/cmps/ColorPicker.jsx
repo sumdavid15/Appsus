@@ -1,5 +1,5 @@
 function ColorBtn({ currentColor, color, onChange }) {
-    return <button
+    return <button type='button'
         className={`color-picker-btn ${color === currentColor ? 'selected' : ''}`}
         style={{ backgroundColor: color }}
         onClick={() => onChange(color)}
@@ -7,7 +7,6 @@ function ColorBtn({ currentColor, color, onChange }) {
         {color === currentColor && <i className="fa-solid fa-check"></i>}
     </button>
 }
-
 
 export function ColorPicker({ color, onChange }) {
     return (
