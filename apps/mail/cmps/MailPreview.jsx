@@ -18,12 +18,11 @@ const { useState, useEffect } = React
 export function MailPreview({ mail, onMailClicked }) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [isStarred, setIsStarred] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
-  useEffect(() => {
-  }, [isExpanded])
+  useEffect(() => {}, [isExpanded])
 
-  useEffect(() => {
-  }, [isStarred])
+  useEffect(() => {}, [isStarred])
 
   function formatTime(time) {
     // formate timestamp to 11/11/23
@@ -40,12 +39,16 @@ export function MailPreview({ mail, onMailClicked }) {
     onMailClicked(mail, "isStarred")
   }
 
-  // if no mails, show no mails
+  function handleClick(ev, mail, prop) {
+    ev.stopPropagation()
+    onMailClicked(mail, prop)
+  }
 
   return (
     <React.Fragment>
-      {/* <li className="mail-preview" onClick={() => onMailClick(mail.id)}> */}
       <li
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         className={`mail-preview ${mail.isRead ? "read" : ""}`}
         onClick={() => {
           setIsExpanded(!isExpanded)
@@ -64,8 +67,16 @@ export function MailPreview({ mail, onMailClicked }) {
           <span className="mail-seperator">-</span>
           <span className="mail-body">{mail.body}</span>
         </div>
-        <span className="mail-sent-at">{formatTime(mail.sentAt)}</span>
-      </li>
+        {!isHovered ? (
+          <span className="mail-time">{formatTime(mail.sentAt)}</span>
+        ) : (
+          <span className="mail-options">
+            <i title="Mark as read" className="fa-solid fa-envelope-open" onClick={(ev) => handleClick(ev, mail, 'isRead')}></i>
+            <i title="Save as note" className="fa-solid fa-reply" onClick={(ev) => handleClick(ev, mail, 'saveAsNote')}></i>
+            <i title="Delete" className="fa-solid fa-trash" onClick={(ev) => handleClick(ev, mail, 'delete')}></i>
+          </span>
+        )}
+        </li>
       {isExpanded && (
         <div className="mail-expanded">
           <div className="mail-expanded-header">

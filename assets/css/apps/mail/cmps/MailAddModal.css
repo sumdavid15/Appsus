@@ -1,15 +1,86 @@
-
-
 .mail-add-modal {
-    display: flex;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
-    border-radius: 10px;
-    padding: 1em;
-    z-index: 100;
-    width: 60vw;
-    height: 60vh;
-}
+    width: 500px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  
+  .mail-add-modal-content {
+    padding: 20px;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .mail-add-modal h2 {
+    margin-top: 0;
+  }
+
+    .mail-add-modal form {
+        padding: 20px;
+    }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+ .mail-add-modal input, 
+  textarea {
+    width: 96%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  } 
+
+    .mail-add-modal input:focus,
+    textarea:focus {
+        outline: none;
+        border-color: lightblue;
+    }
+  
+  button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px; 
+    border-radius: 4px;
+    border: none;
+    background: lightblue;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background: rgb(126, 204, 230);
+  }
+
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(53, 53, 53, 0.5);
+    backdrop-filter: blur(1px);
+    z-index: 99;
+  }
+
+  .fa-solid.fa-pencil {
+    font-size: 1.2em;
+    margin: 0 0.5em;
+    color: #555;
+  }
+  
