@@ -1,14 +1,14 @@
 const { useState, useEffect } = React
 
-export function MailSortBy({ onSetSortBy, sortBy }) {
+export function MailSortBy({ onSetSortBy, sortBy, onToggleDetails }) {
   const [sort, setSort] = useState(sortBy)
 
   useEffect(() => {
-    console.log("sort", sort)
     onSetSortBy(sort)
   }, [sort])
 
   function handleChange(ev) {
+    onToggleDetails(null)
     setSort({ ...sort, [ev.target.name]: ev.target.value })
   }
 

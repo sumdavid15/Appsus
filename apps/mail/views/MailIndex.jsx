@@ -15,15 +15,14 @@ export function MailIndex({ onSetFilter, filterBy}) {
   const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
-    console.log('sortbyEffect', sortBy);
     mailService
       .query(filterBy, sortBy)
       .then((mails) => {
         setMails(mails)
       })
       .catch((err) => {
-        console.log("Cannot load mails", err)
-      })
+        console.log("MailIndex: err in query", err)
+            })
   }, [filterBy, sortBy])
 
   // function onSetFilter(filterBy) {
@@ -45,8 +44,7 @@ export function MailIndex({ onSetFilter, filterBy}) {
       console.log('Waiting for david');
     }
     if (prop === "delete") {
-      mail.removedAt = Date.now()
-      console.log('mail', mail);
+      mail.removedAt === null ? mail.removedAt = Date.now() : ''
     }
 
     mailService.save(mail).then(() => {

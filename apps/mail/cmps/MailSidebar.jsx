@@ -26,7 +26,6 @@ export function MailSidebar({ onSetFilter, filterBy, handleModal }) {
 
   function handleChange(ev) {
     if (ev.target.name === "status") {
-      console.log("ev.target.value", ev.target.value)
       setStatusFilter(ev.target.value)
       setStarredFilter(null)
       setSelected(ev.target.value)
