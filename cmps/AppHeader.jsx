@@ -19,7 +19,7 @@ export function AppHeader({ onSetFilter, filterBy }) {
     <header className="app-header">
       <Link to="/">
         <div className="logo">
-        <img src="../assets/img/logo.png" alt="" />
+        <img src="img/logo.png" alt="" />
         <span>Appsus</span>
         </div>
       </Link>
@@ -52,27 +52,27 @@ export function AppHeader({ onSetFilter, filterBy }) {
             <div>
             <NavLink to="/" onClick={toggleMenu}>
               <section>
-                <img src="../assets/img/home.png" alt="" />
+                <img src="img/home.png" alt="" />
                 <span>Home</span>
               </section>
             </NavLink>
             <NavLink to="/about" onClick={toggleMenu}>
               <section>
-                <img src="../assets/img/info.png" alt="" />
+                <img src="img/info.png" alt="" />
                 <span>About</span>
               </section>
             </NavLink>
             </div>
             <div>
-            <NavLink to="/mail" onClick={toggleMenu}>
+            <NavLink to="mail" onClick={toggleMenu}>
               <section>
-                <img src="../assets/img/gmail.png" alt="" />
+                <img src="img/gmail.png" alt="" />
                 <span>Mail</span>
               </section>
             </NavLink>
             <NavLink to="/note" onClick={toggleMenu}>
               <section>
-                <img src="../assets/img/keeps.png" alt="" />
+                <img src="img/keeps.png" alt="" />
                 <span>Note</span>
               </section>
             </NavLink>
