@@ -1,0 +1,19 @@
+@media (max-width: 770px) {
+    .feature-container {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 770px) {
+    .hero-text {
+        font-size: 5rem;
+        font-weight: 700;
+    }
+    .hero-text h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero-btn {
+        font-size: 18px;
+      }
+}
