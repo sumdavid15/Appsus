@@ -29,6 +29,8 @@
 
 .add-note-action-container {
     display: flex;
+    align-items: center;
+    font-size: 20px;
     gap: 20px;
 }
 
