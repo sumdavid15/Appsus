@@ -49,7 +49,6 @@
 .color-picker>*:hover {
     cursor: pointer;
     scale: 1.1;
-    transition: scale 300ms;
 }
 
 .pinned {
@@ -68,6 +67,7 @@
     border: none;
     color: rgba(0, 0, 0, 0.488);
     cursor: pointer;
+    transition: scale 130ms;
 }
 
 .note-card:hover .note-action-section {

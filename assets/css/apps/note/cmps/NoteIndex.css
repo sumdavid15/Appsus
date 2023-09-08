@@ -5,3 +5,29 @@
      height: 100%;
      margin-top: 20px;
  }
+
+ .note-index-container input {
+     border-radius: 6px;
+     background: rgba(255, 255, 255, 0.122);
+     border: 1px solid rgba(0, 0, 0, 0.149);
+     padding: 8px 12px;
+ }
+
+ .note-index-container button {
+     cursor: pointer;
+     border-radius: 6px;
+     background: #ffffffa6;
+     border: 1px solid rgba(0, 0, 0, 0.149);
+     padding: 8px 12px;
+ }
+
+ .note-index-container .grouped input {
+     border-top-right-radius: 0;
+     border-bottom-right-radius: 0;
+     border-right: 0;
+ }
+
+ .note-index-container .grouped button {
+     border-top-left-radius: 0;
+     border-bottom-left-radius: 0;
+ }

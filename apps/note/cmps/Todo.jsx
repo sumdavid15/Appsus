@@ -24,7 +24,7 @@ export function TodoList({ todos, onChange }) {
 
     return (
         <div>
-            <div>
+            <div class="grouped">
                 <input
                     type="text"
                     placeholder="Add a new task"
@@ -33,21 +33,23 @@ export function TodoList({ todos, onChange }) {
                 />
                 <button type="button" onClick={handleAddTodo}>Add</button>
             </div>
-            <ul>
+            <div className="todo-list-container">
                 {todos.map((todo, index) => (
-                    <li key={index}>
-                        <input
-                            type="checkbox"
-                            checked={todo.completed}
-                            onChange={() => handleToggleTodo(index)}
-                        />
-                        <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
-                            {todo.text}
-                        </span>
-                        <button type="button" onClick={() => handleDeleteTodo(index)}>Delete</button>
-                    </li>
+                    <div className="todo-item" key={index}>
+                        <div className="todo-checkbox-container">
+                            <input
+                                type="checkbox"
+                                checked={todo.completed}
+                                onChange={() => handleToggleTodo(index)}
+                            />
+                            <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+                                {todo.text}
+                            </span>
+                        </div>
+                        <button className="todo-delete-btn" type="button" onClick={() => handleDeleteTodo(index)}> <i className="fa-solid fa-trash" onClick={() => handleDeleteTodo(index)}></i></button>
+                    </div>
                 ))}
-            </ul>
+            </div >
         </div>
     );
 }
