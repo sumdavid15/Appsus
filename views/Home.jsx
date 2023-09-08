@@ -1,3 +1,6 @@
+const { Link, NavLink, useLocation } = ReactRouterDOM
+
+
 export function Home() {
 
     function scrollToFeatures() {
@@ -28,6 +31,7 @@ export function Home() {
           <img src="img/gmail.png" alt="" />
           <h3>Mail</h3>
           <p>Send and receive mails with our encrypted mailing service</p>
+          <Link to="/mail">
           <button id="feature-btn" className="hero-btn">
             <span className="hero-btn-text">Jump in!</span>
             <span className="hero-blob"></span>
@@ -35,6 +39,7 @@ export function Home() {
             <span className="hero-blob"></span>
             <span className="hero-blob"></span>
           </button>
+            </Link>
         </div>
         <div className="feature">
           <img src="img/keeps.png" alt="" />
@@ -43,6 +48,7 @@ export function Home() {
             Quickly capture what's on your mind. Add notes and photos to Appsus
             Notes
           </p>
+          <Link to="/note">
           <button id="feature-btn" className="hero-btn">
             <span className="hero-btn-text">Jump in!</span>
             <span className="hero-blob"></span>
@@ -50,6 +56,7 @@ export function Home() {
             <span className="hero-blob"></span>
             <span className="hero-blob"></span>
           </button>
+            </Link>
         </div>
         <div className="feature">
           <img src="img/books.png" alt="" />
