@@ -1,4 +1,10 @@
 export function Home() {
+
+    function scrollToFeatures() {
+        document.getElementById("feature-text").scrollIntoView({behavior: "smooth"});
+    }
+    
+
   return (
     <section className="home-container">
       <section className="home">
@@ -7,7 +13,7 @@ export function Home() {
         <div className="hero-text">
           <h1>Appsus</h1>
           <h2>Experience our amazing friendly designed tools for free!</h2>
-          <button className="hero-btn">
+          <button className="hero-btn" onClick={scrollToFeatures}>
             <span className="hero-btn-text">Get Started!</span>
             <span className="hero-blob"></span>
             <span className="hero-blob"></span>
@@ -56,6 +62,49 @@ export function Home() {
             <span className="hero-blob"></span>
             <span className="hero-blob"></span>
           </button>
+        </div>
+      </div>
+      <h2 id="feature-text">Our Team</h2>
+      <div className="cards-container">
+        {/* DAVID */}
+      <div className="card">
+          <div className="card__content">
+            <div>
+            <img src="img/avatar.png" alt="" />
+            </div>
+            <div className="card-info">
+                <h1>David Tadevosian</h1>
+            21 years old from Kadima, Israel. Always trying to learn new things! Studying web development in Coding-Academy.
+            </div>
+            <div className="card-links">
+                <i className="fab fa-github"></i>
+                <i className="fab fa-linkedin"></i>
+            </div>
+          </div>
+          <div className="blob"></div>
+          <div className="blob"></div>
+          <div className="blob"></div>
+          <div className="blob"></div>
+        </div>
+        {/* DANIEL */}
+        <div className="card">
+          <div className="card__content">
+            <div>
+            <img src="img/avatar.png" alt="" />
+            </div>
+            <div className="card-info">
+                <h1>Daniel Levy</h1>
+            25 years old from Jerusalem, Israel. Always trying to learn new things! Studying web development in Coding-Academy.
+            </div>
+            <div className="card-links">
+                <i className="fab fa-github"></i>
+                <i className="fab fa-linkedin"></i>
+            </div>
+          </div>
+          <div className="blob"></div>
+          <div className="blob"></div>
+          <div className="blob"></div>
+          <div className="blob"></div>
         </div>
       </div>
     </section>
