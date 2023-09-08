@@ -9,7 +9,6 @@ export function NoteAdd({ onCreate }) {
     const [type, setType] = useState('text')
     const [color, setColor] = useState('white')
     const [isPinned, setIsPinned] = useState(false)
-    const [todo, setTodo] = useState(false)
 
     function addNote() {
         const note = {
@@ -49,7 +48,6 @@ export function NoteAdd({ onCreate }) {
                         <div onClick={() => setType('video')}><i className="fa-solid fa-video"></i></div>
                         <div onClick={() => {
                             setType('todo')
-                            setTodo(true)
                         }
                         }><i className="fa-regular fa-rectangle-list"></i></div>
                     </div>
@@ -61,7 +59,7 @@ export function NoteAdd({ onCreate }) {
                             onChange={(e) => setIsPinned(e.target.checked)}
                         />
                     </div>
-                    <button>Add</button>
+                    <button className="addnote-btn">Add</button>
                 </section>
             </form >
         </section >
