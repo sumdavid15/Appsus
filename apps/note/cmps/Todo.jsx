@@ -24,7 +24,7 @@ export function TodoList({ todos, onChange }) {
 
     return (
         <div>
-            <div class="grouped">
+            <div className="grouped">
                 <input
                     type="text"
                     placeholder="Add a new task"
