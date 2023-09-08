@@ -11,10 +11,11 @@
     transition: all 300ms;
 }
 
-.note-input-container form{
+.note-input-container form {
     display: flex;
     gap: 10px;
 }
+
 .note-input-container textarea {
     font-size: 1.1rem;
     border: none;
@@ -26,7 +27,7 @@
     flex-direction: column;
 }
 
-.add-note-action-container{
+.add-note-action-container {
     display: flex;
     gap: 20px;
 }
@@ -36,3 +37,18 @@
     gap: 10px;
 }
 
+.add-note-type-btn>*:hover {
+    cursor: pointer;
+    scale: 1.1;
+    transition: scale 300ms ;
+}
+
+.addnote-btn{
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.addnote-btn:hover{
+background-color: #f6f6f6;
+}

@@ -13,6 +13,10 @@
     break-inside: avoid;
 }
 
+.note-card img {
+    border-radius: 5px;
+}
+
 .note-card:hover {
     box-shadow: 1px 1px 3px rgba(33, 33, 33, .4);
 }
@@ -42,6 +46,12 @@
     gap: 4px;
 }
 
+.color-picker>*:hover {
+    cursor: pointer;
+    scale: 1.1;
+    transition: scale 300ms;
+}
+
 .pinned {
     position: absolute;
     top: 0;
@@ -68,6 +78,13 @@
     opacity: 0;
     transition: all 300ms;
     margin-top: auto;
+}
+
+.delete-btn:hover,
+.duplicate-btn:hover {
+    cursor: pointer;
+    scale: 1.1;
+    transition: scale 300ms;
 }
 
 .color-picker-btn.selected {
