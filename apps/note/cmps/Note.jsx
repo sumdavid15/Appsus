@@ -13,9 +13,6 @@ export function Note({ note, onDeleteNote, onChange }) {
     useEffect(() => {
         if (titleRef.current) titleRef.current.innerText = note.noteTitle;
         if (contentRef.current) contentRef.current.innerText = note.noteContent;
-
-        // titleRef.current.innerText = note.noteTitle
-        // contentRef.current.innerText = note.noteContent
     }, [])
 
     function getVideoId() {
@@ -51,7 +48,10 @@ export function Note({ note, onDeleteNote, onChange }) {
             case 'todo':
                 return <React.Fragment>
                     <h1 ref={titleRef} contentEditable='true' onInput={_editText}></h1>
-                    <TodoList />
+                    <TodoList todos={note.todos} onChange={(todos) => onChange({
+                        ...note,
+                        todos
+                    })} />
                 </React.Fragment>
             default:
                 return null
