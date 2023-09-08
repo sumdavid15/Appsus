@@ -7,8 +7,20 @@
  } */
 
  .note-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+ }
+
+ .pinned-section-container,
+ .others-section-container {
+     position: relative;
      padding: 0px 19px 0px 19px;
      columns: 4 261px;
      column-gap: 10px;
-     margin-top: 40px;
+ }
+
+ .pinned-section,
+ .others-section {
+  padding: 10px 19px;
  }

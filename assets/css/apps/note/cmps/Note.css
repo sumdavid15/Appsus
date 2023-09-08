@@ -52,9 +52,11 @@
 }
 
 .pinned {
-    position: absolute;
-    top: 0;
-    right: 0;
+    font-size: 18px;
+}
+
+.isPinned {
+    color: orange;
 }
 
 .color-picker-btn {
@@ -93,4 +95,8 @@
 
 .note-action-section.hover {
     opacity: 1;
+}
+
+.note-card.todo-list-container:hover {
+    background-color: black;
 }

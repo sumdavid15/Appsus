@@ -71,11 +71,20 @@ export function Note({ note, onDeleteNote, onChange }) {
         onChange({ ...rest })
     }
 
+    const dynClass = isPinned ? 'isPinned' : ''
+
     return (
         <section className='note-card' style={{ backgroundColor: `${color}` }}>
             {renderNoteContent(note)}
             <section className='note-action-section'>
                 <div className="note-action-button-container">
+                    <div title="Pin Note" className={`pinned ${dynClass}`} onClick={() => {
+                        setIsPinned(!isPinned)
+                        return onChange({
+                            ...note,
+                            isPinned: !isPinned
+                        })
+                    }}><i className="fa-solid fa-thumbtack"></i></div>
                     <ColorPicker color={color} onChange={(color) => {
                         setColor(color)
                         onChange({
@@ -83,15 +92,10 @@ export function Note({ note, onDeleteNote, onChange }) {
                             color,
                         })
                     }} />
+                    {/* type="checkbox" checked={isPinned} */}
                     <div className="delete-btn" title='Delete Note' onClick={() => onDeleteNote(note.id)}><i className="fa-solid fa-trash"></i></div>
-                    <input className='pinned' type="checkbox" checked={isPinned} onChange={() => {
-                        setIsPinned(!isPinned)
-                        return onChange({
-                            ...note,
-                            isPinned: !isPinned
-                        })
-                    }} />
                     <div className="duplicate-btn" title='Duplicate Note' onClick={duplicate}><i className="fa-solid fa-copy"></i></div>
+                    <div><i className="fa-solid fa-tag"></i></div>
                 </div>
             </section>
 
@@ -99,5 +103,3 @@ export function Note({ note, onDeleteNote, onChange }) {
     )
 }
 
-/* <textarea type="text" value={title} onChange={(ev=>setTitle(ev.target.value))} /> */
-/* <div title='Edit Note' onClick={() => setIsEdit(true)}><i className="fa-solid fa-pen-to-square"></i></div> */
