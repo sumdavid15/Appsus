@@ -6,6 +6,8 @@ import { MailSearchFilter } from "../cmps/MailSearchFilter.jsx"
 import { MailSidebar } from "../cmps/MailSidebar.jsx"
 import { MailAddModal } from "../cmps/MailAddModal.jsx"
 import { MailSortBy } from "../cmps/MailSortBy.jsx"
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
+
 
 const { useState, useEffect } = React
 const { useNavigate, useParams } = ReactRouterDOM
@@ -38,6 +40,8 @@ export function MailIndex({ onSetFilter, filterBy }) {
     mailService.remove(mail.id).then(() => {
       mailService.query(filterBy, sortBy).then((mails) => {
         setMails(mails)
+        console.log('here');
+        showSuccessMsg("Mail removed successfully")
       })
     })
   }
@@ -98,6 +102,7 @@ export function MailIndex({ onSetFilter, filterBy }) {
           onSetFilter={onSetFilter}
           filterBy={filterBy}
           handleModal={handleModal}
+          mailList={mails}
         />
         <MailList
           mails={mails}

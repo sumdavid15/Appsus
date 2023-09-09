@@ -307,6 +307,7 @@ export const mailService = {
   getDefaultFilterBy,
   getLoggedInUser,
   getDefaultSortBy,
+  getAllMails,
 }
 
 function query(filterBy = {}, sortBy = {}) {
@@ -466,4 +467,8 @@ function _sortEmails(emails, sortBy) {
     })
   }
   return sortedEmails
+}
+
+function getAllMails() {
+  return storageService.loadFromStorage(EMAILS_KEY)
 }

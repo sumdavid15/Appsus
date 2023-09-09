@@ -1,7 +1,9 @@
+import { mailService } from "../services/mail.service.js"
+
 const { useState, useEffect } = React
 const { useNavigate, useParams } = ReactRouterDOM
 
-export function MailSidebar({ onSetFilter, filterBy, handleModal }) {
+export function MailSidebar({ onSetFilter, filterBy, handleModal, mailList }) {
   const [statusFilter, setStatusFilter] = useState(filterBy.status)
   const [starredFilter, setStarredFilter] = useState(filterBy.isStarred)
   const [selected, setSelected] = useState("inbox")
@@ -13,24 +15,22 @@ export function MailSidebar({ onSetFilter, filterBy, handleModal }) {
     if (params.action === "add") {
       handleModal()
     }
-
-      if (params.action === "draft") {
-        setStatusFilter("draft")
-        setSelected("draft")
-      }
-      if (params.action === "sent") {
-        setStatusFilter("sent")
-        setSelected("sent")
-      }
-      if (params.action === "trash") {
-        setStatusFilter("trash")
-        setSelected("trash")
-      }
+    if (params.action === "draft") {
+      setStatusFilter("draft")
+      setSelected("draft")
+    }
+    if (params.action === "sent") {
+      setStatusFilter("sent")
+      setSelected("sent")
+    }
+    if (params.action === "trash") {
+      setStatusFilter("trash")
+      setSelected("trash")
+    }
     if (params.action === "starred") {
       setStarredFilter(true)
       setSelected("starred")
     }
-
   }, [params.action])
 
   useEffect(() => {
@@ -79,10 +79,35 @@ export function MailSidebar({ onSetFilter, filterBy, handleModal }) {
     } else navigate(`/mail/${ev.target.value}`)
   }
 
+  function getCount(filter) {
+    const user = mailService.getLoggedInUser()
+    const userEmail = user.email
+    const emails = mailService.getAllMails()
+    if (filter === "inbox") {
+      return emails.filter((email) =>
+        email.status === "inbox" && !email.removedAt ? email : null).length
+    }
+    if (filter === "starred") {
+      return emails.filter((email) => email.isStarred).length
+    }
+    if (filter === "sent") {
+      return emails.filter((email) =>
+       email.from === userEmail && email.status !== 'draft').length
+    }
+    if (filter === "draft") {
+      return emails.filter((email) => email.status === "draft").length
+    }
+    if (filter === "trash") {
+      return emails.filter((email) => email.removedAt).length
+    }
+    return 0
+  }
+  
+
   return (
     <section className="mail-sidebar">
       <ul className="sidebar-container">
-        <li className="add-btn" onClick={() => navigate('/mail/add')}>
+        <li className="add-btn" onClick={() => navigate("/mail/add")}>
           <i className="fa-solid fa-plus"></i>
           <span>New</span>
         </li>
@@ -93,9 +118,13 @@ export function MailSidebar({ onSetFilter, filterBy, handleModal }) {
           className={selected === "inbox" ? "active" : ""}
         >
           {selected === "inbox" ? (
-            <i className="fa-regular fa-envelope-open"></i>
+            <i className="fa-regular fa-envelope-open">
+              <p className="mail-count">{getCount("inbox")}</p>
+            </i>
           ) : (
-            <i className="fa-regular fa-envelope"></i>
+            <i className="fa-regular fa-envelope">
+              <p className="mail-count">{getCount("inbox")}</p>
+            </i>
           )}
           <span>Inbox</span>
         </li>
@@ -106,11 +135,16 @@ export function MailSidebar({ onSetFilter, filterBy, handleModal }) {
           className={selected === "starred" ? "active" : ""}
         >
           {selected === "starred" ? (
-            <i className="fa-solid fa-star"></i>
+            <i className="fa-solid fa-star">
+              <p className="mail-count">{getCount("starred")}</p>
+            </i>
           ) : (
-            <i className="fa-regular fa-star"></i>
+            <i className="fa-regular fa-star">
+              <p className="mail-count">{getCount("starred")}</p>
+            </i>
           )}
-          <span>Starred</span>
+          <span>Starred
+          </span>
         </li>
         <li
           onClick={() =>
@@ -119,11 +153,14 @@ export function MailSidebar({ onSetFilter, filterBy, handleModal }) {
           className={selected === "sent" ? "active" : ""}
         >
           {selected === "sent" ? (
-            <i className="fa-solid fa-paper-plane"></i>
+            <i className="fa-solid fa-paper-plane">
+              <p className="mail-count">{getCount("sent")}</p>
+            </i>
           ) : (
-            <i className="fa-regular fa-paper-plane"></i>
+            <i className="fa-regular fa-paper-plane">
+              <p className="mail-count">{getCount("sent")}</p>
+            </i>
           )}
-
           <span>Sent</span>
         </li>
         <li
@@ -133,9 +170,13 @@ export function MailSidebar({ onSetFilter, filterBy, handleModal }) {
           className={selected === "draft" ? "active" : ""}
         >
           {selected === "draft" ? (
-            <i className="fa-solid fa-pen-to-square"></i>
+            <i className="fa-solid fa-pen-to-square">
+              <p className="mail-count">{getCount("draft")}</p>
+            </i>
           ) : (
-            <i className="fa-regular fa-pen-to-square"></i>
+            <i className="fa-regular fa-pen-to-square">
+              <p className="mail-count">{getCount("draft")}</p>
+            </i>
           )}
           <span>Drafts</span>
         </li>
@@ -146,9 +187,13 @@ export function MailSidebar({ onSetFilter, filterBy, handleModal }) {
           className={selected === "trash" ? "active" : ""}
         >
           {selected === "trash" ? (
-            <i className="fa-solid fa-trash-can"></i>
+            <i className="fa-solid fa-trash-can">
+              <p className="mail-count">{getCount("trash")}</p>
+            </i>
           ) : (
-            <i className="fa-regular fa-trash-can"></i>
+            <i className="fa-regular fa-trash-can">
+              <p className="mail-count">{getCount("trash")}</p>
+            </i>
           )}
           <span>Trash</span>
         </li>
