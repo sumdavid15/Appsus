@@ -7,9 +7,9 @@
  } */
 
  .note-list {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+     display: flex;
+     flex-direction: column;
+     gap: 40px;
  }
 
  .pinned-section-container,
@@ -22,5 +22,12 @@
 
  .pinned-section,
  .others-section {
-  padding: 10px 19px;
+     padding: 10px 19px;
+ }
+
+ .no-notes-msg {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-top: 50px;
  }

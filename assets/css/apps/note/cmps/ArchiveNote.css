@@ -1,0 +1,7 @@
+.trash-note-container {
+    position: relative;
+    padding: 0px 19px 0px 19px;
+    columns: 4 261px;
+    column-gap: 10px;
+    margin-top: 40px;
+}

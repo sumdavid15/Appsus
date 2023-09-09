@@ -1,5 +1,7 @@
 import { ColorPicker } from "./ColorPicker.jsx"
 import { TodoList } from "./Todo.jsx"
+import { NoteAddTag } from "./NoteAddTag.jsx"
+import { utilService } from "../../../services/util.service.js"
 
 const { useState, useEffect, useRef } = React
 
@@ -76,7 +78,13 @@ export function Note({ note, onDeleteNote, onChange }) {
     return (
         <section className='note-card' style={{ backgroundColor: `${color}` }}>
             {renderNoteContent(note)}
-            <section className='note-action-section'>
+
+            {note.label &&
+                <div className="note-label-container">
+                    {note.label.map(label => <button onClick={() => { console.log(`${label}`) }} key={utilService.makeId()} className="note-label">{label}</button>)}
+                </div>}
+
+            {!note.isArchive && <section className='note-action-section'>
                 <div className="note-action-button-container">
                     <div title="Pin Note" className={`pinned ${dynClass}`} onClick={() => {
                         setIsPinned(!isPinned)
@@ -92,12 +100,40 @@ export function Note({ note, onDeleteNote, onChange }) {
                             color,
                         })
                     }} />
-                    {/* type="checkbox" checked={isPinned} */}
-                    <div className="delete-btn" title='Delete Note' onClick={() => onDeleteNote(note.id)}><i className="fa-solid fa-trash"></i></div>
                     <div className="duplicate-btn" title='Duplicate Note' onClick={duplicate}><i className="fa-solid fa-copy"></i></div>
-                    <div><i className="fa-solid fa-tag"></i></div>
+                    {note.type !== 'todo' && (
+                        <div onClick={() => {
+                            console.log(note.noteTitle);
+                            console.log(note.noteContent);
+                        }}>
+                            <i className="fa-regular fa-envelope"></i>
+                        </div>
+                    )}
+                    <div className="delete-btn" title='Delete Note' onClick={() => {
+                        onDeleteNote(note)
+                    }}><i className="fa-solid fa-trash"></i></div>
+                    <NoteAddTag onChange={onChange} note={note} />
                 </div>
             </section>
+            }
+            {
+                note.isArchive && <section className="note-action-button-container">
+                    <div title="Restore note" onClick={() => {
+                        onChange({
+                            ...note,
+                            isArchive: false,
+                        })
+                    }}>
+                        <i className="fa-solid fa-rotate-left"></i>
+                    </div>
+                    <div className="delete-btn" title='Delete Note' onClick={() => {
+                        // onChange({
+                        //     ...note, isArchive: true,
+                        // })
+                        onDeleteNote(note)
+                    }}><i className="fa-solid fa-trash"></i></div>
+                </section>
+            }
 
         </section >
     )

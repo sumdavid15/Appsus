@@ -1,5 +1,7 @@
+@import 'cmps/ArchiveNote.css';
 @import 'cmps/Note.css';
 @import 'cmps/NoteAdd.css';
+@import 'cmps/NoteAddTag.css';
 @import 'cmps/NoteIndex.css';
 @import 'cmps/NoteList.css';
 @import 'cmps/Todo.css';
