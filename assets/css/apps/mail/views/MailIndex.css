@@ -7,7 +7,7 @@
     overflow: hidden;
     color: #4d4d4d;
     background-color: #f6f8fc;
-    height: calc(100vh - 74px);
+    height: calc(100vh - 100px);
  }
 
  .mail-container {
