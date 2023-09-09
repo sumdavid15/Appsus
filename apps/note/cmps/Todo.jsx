@@ -1,25 +1,29 @@
 import { utilService } from "../../../services/util.service.js";
+import { showErrorMsg } from "../../../services/event-bus.service.js";
 
 const { useState } = React
 
-export function TodoList({ todos, onChange }) {
+export function TodoList({ isTrash, todos, onChange }) {
     const [newTodo, setNewTodo] = useState('');
 
-    const handleAddTodo = () => {
+    function handleAddTodo() {
+        if (isTrash) return showErrorMsg("Can't be edited in the trash")
         if (newTodo.trim() !== '') {
             onChange([...todos, { id: utilService.makeId(), text: newTodo, completed: false }]);
             setNewTodo('');
         }
     };
 
-    const handleToggleTodo = (id) => {
+    function handleToggleTodo(id) {
+        if (isTrash) return showErrorMsg("Can't be edited in the trash")
         const index = todos.findIndex(todo => todo.id === id)
         const updatedTodos = [...todos];
         updatedTodos[index].completed = !updatedTodos[index].completed;
         onChange(updatedTodos);
     };
 
-    const handleDeleteTodo = (id) => {
+    function handleDeleteTodo(id) {
+        if (isTrash) return showErrorMsg("Can't be edited in the trash")
         const index = todos.findIndex(todo => todo.id === id)
         const updatedTodos = [...todos];
         updatedTodos.splice(index, 1);
@@ -33,7 +37,10 @@ export function TodoList({ todos, onChange }) {
                     type="text"
                     placeholder="Add a new task"
                     value={newTodo}
-                    onChange={(e) => setNewTodo(e.target.value)}
+                    onChange={(e) => {
+                        if (isTrash) return showErrorMsg("Can't be edited in the trash")
+                        setNewTodo(e.target.value)
+                    }}
                 />
                 <button className="add-todo-list-item" type="button" onClick={handleAddTodo}>Add</button>
             </div>

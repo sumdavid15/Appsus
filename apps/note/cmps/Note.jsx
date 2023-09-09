@@ -54,7 +54,7 @@ export function Note({ note, onDeleteNote, onChange }) {
             case 'todo':
                 return <React.Fragment>
                     <h1 ref={titleRef} contentEditable={`${!isTrash}`} onInput={_editText}></h1>
-                    <TodoList todos={note.todos} onChange={(todos) => onChange({
+                    <TodoList isTrash={isTrash} todos={note.todos} onChange={(todos) => onChange({
                         ...note,
                         todos
                     })} />

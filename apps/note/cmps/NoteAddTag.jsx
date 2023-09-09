@@ -6,19 +6,19 @@ export function NoteAddTag({ onChange, note }) {
     const [isInputOpen, setIsInputOpen] = useState(false);
     const [inputValue, setInputValue] = useState('');
 
-    const openInput = () => {
+    function openInput() {
         setIsInputOpen(true);
     };
 
-    const closeInput = () => {
+    function closeInput() {
         setIsInputOpen(false);
     };
 
-    const handleInputChange = (e) => {
+    function handleInputChange(e) {
         setInputValue(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    function handleSubmit(e) {
         e.preventDefault();
         if (!inputValue) return
         onChange({
@@ -29,7 +29,7 @@ export function NoteAddTag({ onChange, note }) {
         showSuccessMsg('Label Added')
     };
 
-    const handleMouseLeave = () => {
+    function handleMouseLeave() {
         if (isInputOpen) {
             closeInput()
             setInputValue('')
@@ -42,7 +42,6 @@ export function NoteAddTag({ onChange, note }) {
             {isInputOpen && (
                 <div className="modal" style={{ borderRadius: 5 }} onMouseLeave={handleMouseLeave}>
                     <div className="modal-content">
-                        <span className="close" onClick={closeInput}>&times;</span>
                         <form onSubmit={handleSubmit}>
                             <input
                                 type="text"
@@ -50,7 +49,7 @@ export function NoteAddTag({ onChange, note }) {
                                 value={inputValue}
                                 onChange={handleInputChange}
                             />
-                            <button type="submit">add</button>
+                            <button style={{ color: 'black' }} type="submit">add</button>
                         </form>
                     </div>
                 </div>
