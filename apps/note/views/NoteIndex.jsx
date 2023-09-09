@@ -5,9 +5,8 @@ import { ArchiveNote } from "../cmps/ArchiveNote.jsx";
 import { NoteSidebar } from "../cmps/NoteSidebar.jsx";
 
 
-const { Link } = ReactRouterDOM
 const { useState, useEffect } = React
-const { useParams, useNavigate } = ReactRouterDOM
+const { useParams } = ReactRouterDOM
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
