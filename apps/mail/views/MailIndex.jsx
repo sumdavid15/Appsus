@@ -6,7 +6,7 @@ import { MailSearchFilter } from "../cmps/MailSearchFilter.jsx"
 import { MailSidebar } from "../cmps/MailSidebar.jsx"
 import { MailAddModal } from "../cmps/MailAddModal.jsx"
 import { MailSortBy } from "../cmps/MailSortBy.jsx"
-import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
+import { showErrorMsg, showSuccessMsg , showUserMsg } from "../../../services/event-bus.service.js"
 
 
 const { useState, useEffect } = React
@@ -28,6 +28,7 @@ export function MailIndex({ onSetFilter, filterBy }) {
       })
       .catch((err) => {
         console.log("MailIndex: err in query", err)
+        showErrorMsg("Cannot load mails")
       })
   }, [filterBy, sortBy])
 
@@ -52,6 +53,7 @@ export function MailIndex({ onSetFilter, filterBy }) {
     }
     if (prop === "isStarred") {
       mail.isStarred = !mail.isStarred
+      showSuccessMsg(`Mail ${mail.isStarred ? "starred" : "unstarred"} successfully`)
     }
     if (prop === "saveAsNote") {
       navigate(`/note/${mail.subject}&&${mail.body}`)
@@ -76,6 +78,7 @@ export function MailIndex({ onSetFilter, filterBy }) {
       mailService.save(mail).then(() => {
         mailService.query(filterBy, sortBy).then((mails) => {
           setMails(mails)
+          showSuccessMsg("Mail sent successfully")
         })
       })
     }
@@ -85,6 +88,7 @@ export function MailIndex({ onSetFilter, filterBy }) {
       mailService.save(mail).then(() => {
         mailService.query(filterBy, sortBy).then((mails) => {
           setMails(mails)
+          showUserMsg("Mail saved as draft")
         })
       })
     }
