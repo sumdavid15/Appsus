@@ -102,10 +102,15 @@
     background-color: black;
 }
 
-.note-label-container{
+.note-label-container {
     display: flex;
     gap: 5px;
     flex-wrap: wrap;
 }
 
-.note-label{}
+.note-label {}
+
+.pinned:hover {
+    cursor: pointer;
+    scale: 1.1;
+}

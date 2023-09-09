@@ -3,6 +3,7 @@ import { NoteList } from "../cmps/NoteList.jsx";
 import { noteService } from "../services/note.service.js";
 import { ArchiveNote } from "../cmps/ArchiveNote.jsx";
 import { NoteSidebar } from "../cmps/NoteSidebar.jsx";
+import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js";
 
 
 const { useState, useEffect } = React
@@ -39,8 +40,10 @@ export function NoteIndex() {
         if (!note.isArchive) {
             note.isArchive = true;
             saveNote(note)
+            showSuccessMsg('Note moved to trash')
         } else {
             noteService.deleteNote(note.id).then(() => noteService.getNotes()).then(setNotes)
+            showSuccessMsg('Note deleted')
         }
     }
 
@@ -48,7 +51,7 @@ export function NoteIndex() {
     return <React-fragment>
         <section>
             <div className="note-container">
-                    <div className="hidden-div"></div>
+                <div className="hidden-div"></div>
                 <div className="note-sidebar">
                     <NoteSidebar archive={archive} setArchive={setArchive} />
                 </div>
