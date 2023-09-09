@@ -119,7 +119,7 @@ export function Note({ note, onDeleteNote, onChange }) {
                     }} />
                     <div className="duplicate-btn" title='Duplicate Note' onClick={duplicate}><i className="fa-solid fa-copy"></i></div>
                     {note.type !== 'todo' && (
-                        <div title="Send mail" onClick={() => {
+                        <div title="Send mail" className="mail-btn" onClick={() => {
                             navigate(`/mail/add/${note.noteTitle}&&${note.noteContent}`)
                         }}>
                             <i className="fa-regular fa-envelope"></i>

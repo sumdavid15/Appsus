@@ -28,6 +28,7 @@
     position: absolute;
     background-color: #F6F8FC;
     z-index: 1;
+    height: 100vh;
 }
 
 .hidden-div {
