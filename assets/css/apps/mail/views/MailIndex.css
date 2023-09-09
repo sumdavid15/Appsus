@@ -7,10 +7,11 @@
     overflow: hidden;
     color: #4d4d4d;
     background-color: #f6f8fc;
-    height: 90vh;
+    height: calc(100vh - 74px);
  }
 
  .mail-container {
     display: flex;
     flex-direction: row;
+    height: calc(100vh - 140px);
  }

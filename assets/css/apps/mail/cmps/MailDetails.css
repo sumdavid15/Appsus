@@ -1,0 +1,32 @@
+.mail-details-container {
+    height: 100%
+}
+#mail-details {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 10px;
+    height: calc(100% - 22px);
+}
+
+.mail-expanded-header i {
+    position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+        padding: 10px;
+    }
+
+    .mail-expanded-header i:nth-child(2) {
+        right: 2.5em;
+    }
+
+    .mail-expanded-header i:hover {
+        cursor: pointer;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-out;
+        background-color: rgba(32, 33, 35, 0.059);
+        border-radius: 50%;
+    }

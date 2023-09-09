@@ -9,29 +9,33 @@ import { MailSortBy } from "../cmps/MailSortBy.jsx"
 
 const { useState, useEffect } = React
 
-export function MailIndex({ onSetFilter, filterBy}) {
+export function MailIndex({ onSetFilter, filterBy }) {
   const [mails, setMails] = useState([])
   const [sortBy, setSortBy] = useState(mailService.getDefaultSortBy())
   const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
-    console.log('sortbyEffect', sortBy);
     mailService
       .query(filterBy, sortBy)
       .then((mails) => {
         setMails(mails)
       })
       .catch((err) => {
-        console.log("Cannot load mails", err)
+        console.log("MailIndex: err in query", err)
       })
   }, [filterBy, sortBy])
 
-  // function onSetFilter(filterBy) {
-  //   setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }))
-  // }
-
   function onSetSortBy(sortBy) {
     setSortBy((prevSort) => ({ ...prevSort, ...sortBy }))
+  }
+
+  function onRemoveMail(mail) {
+    console.log("ON REMOVE MAIL", mail)
+    mailService.remove(mail.id).then(() => {
+      mailService.query(filterBy, sortBy).then((mails) => {
+        setMails(mails)
+      })
+    })
   }
 
   function onMailClicked(mail, prop) {
@@ -42,44 +46,46 @@ export function MailIndex({ onSetFilter, filterBy}) {
       mail.isStarred = !mail.isStarred
     }
     if (prop === "saveAsNote") {
-      console.log('Waiting for david');
+      console.log("Waiting for david")
     }
-    if (prop === "delete") {
-      mail.removedAt = Date.now()
-      console.log('mail', mail);
-    }
-
     mailService.save(mail).then(() => {
       mailService.query(filterBy, sortBy).then((mails) => {
         setMails(mails)
       })
     })
+    if (prop === "delete") {
+      if (mail.removedAt !== null) {
+        onRemoveMail(mail)
+      } else {
+        mail.removedAt = Date.now()
+      }
+    }
   }
 
   function handleModal(mail, prop) {
     setShowModal(!showModal)
     if (prop === "add") {
-        mailService.save(mail).then(() => {
-            mailService.query(filterBy, sortBy).then((mails) => {
-            setMails(mails)
-            })
+      mailService.save(mail).then(() => {
+        mailService.query(filterBy, sortBy).then((mails) => {
+          setMails(mails)
         })
+      })
     }
     if (prop === "draft") {
-      if(mail.to === '' || mail.subject === '' || mail.body === '') return
-        mail.sentAt = null
-        mailService.save(mail).then(() => {
-            mailService.query(filterBy, sortBy).then((mails) => {
-            setMails(mails)
-            })
+      if (mail.to === "" || mail.subject === "" || mail.body === "") return
+      mail.sentAt = null
+      mailService.save(mail).then(() => {
+        mailService.query(filterBy, sortBy).then((mails) => {
+          setMails(mails)
         })
+      })
+    }
   }
-}
 
   return (
     <section className="mail-index">
       <MailAddModal handleModal={handleModal} showModal={showModal} />
-      
+
       {/* <h1>Mail Index</h1> */}
       {/* <br /> */}
 
@@ -89,7 +95,12 @@ export function MailIndex({ onSetFilter, filterBy}) {
           filterBy={filterBy}
           handleModal={handleModal}
         />
-        <MailList mails={mails} onMailClicked={onMailClicked} onSetSortBy={onSetSortBy} sortBy={sortBy} />
+        <MailList
+          mails={mails}
+          onMailClicked={onMailClicked}
+          onSetSortBy={onSetSortBy}
+          sortBy={sortBy}
+        />
       </section>
     </section>
   )

@@ -310,7 +310,6 @@ export const mailService = {
 }
 
 function query(filterBy = {}, sortBy = {}) {
-  console.log('serviceQuery',filterBy , sortBy);
   return asyncStorageService.query(EMAILS_KEY).then((emails) => {
     emails = _filterEmails(emails, filterBy)
     emails = _sortEmails(emails, sortBy)
@@ -392,7 +391,6 @@ function _createEmail() {
 
 function _filterEmails(emails, filterBy) {
   const { status, txt, isRead, isStarred, labels } = filterBy
-  console.log('sss',status);
 // handle if status is trash, return all the emails that removedAt is not null
   if (status === 'trash') {
     return emails.filter((email) => {
@@ -442,7 +440,6 @@ if (status === 'sent') {
   filteredEmails = filteredEmails.filter((email) => {
     return email.removedAt === null
   })
-  console.log('filteredEmails',filteredEmails);
   return filteredEmails
 }
 
@@ -454,7 +451,6 @@ function getDefaultSortBy() {
 }
 
 function _sortEmails(emails, sortBy) {
-  console.log('serviceSort',sortBy , emails);
   const { sortByType, isAsc } = sortBy
   const sortedEmails = emails
   if (sortByType === "date") {

@@ -8,16 +8,18 @@
     background-color: white;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    height: 100%
 }
 
  .mail-list {
     list-style: none;
     padding: 0;
     overflow: auto;
-    height: calc(100vh - 140px);
+    height: 100%;
     margin-block: 0;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    /* background-color: #f6f8fc; */
   }
 
   .mail-list.empty {

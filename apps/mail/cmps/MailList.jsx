@@ -3,27 +3,61 @@
 
 import { MailPreview } from "./MailPreview.jsx"
 import { MailSortBy } from "./MailSortBy.jsx"
+import { MailDetails } from "./MailDetails.jsx"
+
+const { useState, useEffect } = React
 
 export function MailList({ mails, onMailClicked, onSetSortBy, sortBy }) {
+  const [isDetailsShown, setIsDetailsShown] = useState(false)
+  const [selectedMail, setSelectedMail] = useState(null)
+
+  useEffect(() => {
+    console.log(mails);
+  }, [isDetailsShown])
+
+  function onToggleDetails(mail) {
+    setIsDetailsShown(!isDetailsShown)
+    if (mail === null) setSelectedMail(null)
+    else setSelectedMail(mail)
+  }
 
   return (
     <section className="mail-list-container">
-      {mails.length !== 0 && <MailSortBy onSetSortBy={onSetSortBy} sortBy={sortBy} />}
-      
-      <ul className={`clean-list mail-list ${mails.length === 0 ? 'empty' : ''}`}>
-        {mails.length === 0 && 
+      {mails.length !== 0 && (
+        <MailSortBy
+          onSetSortBy={onSetSortBy}
+          sortBy={sortBy}
+          onToggleDetails={onToggleDetails}
+        />
+      )}
+
+      <ul
+        className={`clean-list mail-list ${mails.length === 0 ? "empty" : ""}`}
+      >
+        {mails.length === 0 && (
           <div className="empty-mail-list">
             <h1>Nothing to see here..</h1>
-            <span>Try to add a <a href="#/mail" className="link">new mail</a></span>
+            <span>
+              Try to add a{" "}
+              <a href="#/mail" className="link">
+                new mail
+              </a>
+            </span>
           </div>
-        }
-        {mails.map((mail) => (
-          <MailPreview
-            key={mail.id}
-            mail={mail}
-            onMailClicked={onMailClicked}
-          />
-        ))}
+        )}
+        {isDetailsShown && (
+          <MailDetails mail={selectedMail} onToggleDetails={onToggleDetails} />
+        )}
+        {!isDetailsShown &&
+          mails.map((mail) => (
+            <MailPreview
+              key={mail.id}
+              mail={mail}
+              onMailClicked={onMailClicked}
+              onToggleDetails={onToggleDetails}
+              mailsList={mails}
+            />
+          ))}
       </ul>
     </section>
   )

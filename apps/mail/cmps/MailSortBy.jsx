@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 
-export function MailSortBy({ onSetSortBy, sortBy }) {
+export function MailSortBy({ onSetSortBy, sortBy, onToggleDetails }) {
   const [sort, setSort] = useState(sortBy)
 
   useEffect(() => {
@@ -9,6 +9,7 @@ export function MailSortBy({ onSetSortBy, sortBy }) {
   }, [sort])
 
   function handleChange(ev) {
+    // onToggleDetails(null)
     setSort({ ...sort, [ev.target.name]: ev.target.value })
   }
 
@@ -25,7 +26,7 @@ export function MailSortBy({ onSetSortBy, sortBy }) {
               onChange={handleChange}
               checked={sort.sortByType === "date"}
             />
-            <span className="name">
+            <span className="name" title="Sort by date">
               <i className="fa-regular fa-calendar"></i>
               Date
             </span>
@@ -38,7 +39,7 @@ export function MailSortBy({ onSetSortBy, sortBy }) {
               onChange={handleChange}
               checked={sort.sortByType === "title"}
             />
-            <span className="name">
+            <span className="name" title="Sort by title">
               <i className="fa-solid fa-font"></i>
               Title
             </span>
