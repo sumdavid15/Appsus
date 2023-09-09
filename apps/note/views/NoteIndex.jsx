@@ -6,10 +6,21 @@ import { ArchiveNote } from "../cmps/ArchiveNote.jsx";
 
 const { Link } = ReactRouterDOM
 const { useState, useEffect } = React
+const { useParams, useNavigate } = ReactRouterDOM
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
     const [archive, setArchive] = useState(false)
+
+    const params = useParams()
+
+    function getParams() {
+        if (params.desc) {
+            const descParams = params.desc
+            return descParams.split('&&')
+        }
+        return ''
+    }
 
     useEffect(() => {
         noteService.getNotes().then(setNotes)
@@ -42,7 +53,7 @@ export function NoteIndex() {
     return <React-fragment>
         {!archive && (
             <div className="note-index-container">
-                <NoteAdd onCreate={addNote} />
+                <NoteAdd onCreate={addNote} getParams={getParams} />
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <NoteList notes={notes} onDeleteNote={deleteNote} onChange={saveNote} />
                 </div>
@@ -53,21 +64,3 @@ export function NoteIndex() {
     </React-fragment>
 }
 
-//     !archive &&
-//     <div className="note-index-container" >
-//         <NoteAdd onCreate={addNote} />
-//         <div style={{
-//             display: 'flex',
-//             justifyContent: 'center',
-//         }}>
-//             <NoteList notes={notes} onDeleteNote={deleteNote} onChange={saveNote} />
-//         </div>
-//         <button onClick={() => setArchive(true)}>Archive</button>
-//     </div >
-// )
-
-{/* <Link to={`/archive`}>
-    <button className="archive">
-    Archive
-    </button>
-</Link> */}

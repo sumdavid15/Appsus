@@ -2,15 +2,24 @@ import { ColorPicker } from "./ColorPicker.jsx"
 import { TodoList } from "./Todo.jsx"
 import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
 
+const { useEffect } = React
 const { useState } = React
 
-export function NoteAdd({ onCreate }) {
+export function NoteAdd({ onCreate, getParams }) {
     const [noteTitle, setNoteTitle] = useState('')
     const [noteContent, setNoteContent] = useState('')
     const [type, setType] = useState('text')
     const [color, setColor] = useState('white')
     const [isPinned, setIsPinned] = useState(false)
     const [todos, setTodos] = useState([]);
+
+    useEffect(() => {
+        const [title, content] = getParams()
+        if (title || content) {
+            setNoteTitle(title)
+            setNoteContent(content)
+        }
+    }, [])
 
     function addNote() {
         if (!noteTitle && !noteContent && type !== 'todo') return
