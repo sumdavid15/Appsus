@@ -29,8 +29,19 @@
     background-color: #F6F8FC;
     z-index: 1;
     height: 100vh;
+    border-right: 5px;
 }
 
 .hidden-div {
-    width: 60px;
+    width: 70px;
+}
+
+#note-side-bar {
+    height: 100%;
+    border-radius: 0px 10px 0px 0px;
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+#note-side-bar-container {
+    height: 100vh;
 }

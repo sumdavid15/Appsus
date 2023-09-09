@@ -29,29 +29,31 @@ export function Note({ note, onDeleteNote, onChange }) {
         return match[1]
     }
 
+    const isTrash = note.isArchive
+
     function renderNoteContent(note) {
 
         switch (note.type) {
             case 'text':
                 return (<React.Fragment>
-                    <h1 ref={titleRef} contentEditable='true' onInput={_editText}></h1>
-                    <p ref={contentRef} contentEditable='true' onInput={_editContent}></p>
+                    <h1 ref={titleRef} contentEditable={`${!isTrash}`} onInput={_editText}></h1>
+                    <p ref={contentRef} contentEditable={`${!isTrash}`} onInput={_editContent}></p>
                 </React.Fragment>)
             case 'img':
                 return <React.Fragment>
                     <img src={note.noteContent} alt="" />
-                    <h1 ref={titleRef} contentEditable='true' onInput={_editText}></h1>
+                    <h1 ref={titleRef} contentEditable={`${!isTrash}`} onInput={_editText}></h1>
                 </React.Fragment>
             case 'video':
                 return <React.Fragment>
                     <iframe allow="fullscreen"
                         src={`https://www.youtube.com/embed/${getVideoId()}`}>
                     </iframe>
-                    <h1 ref={titleRef} contentEditable='true' onInput={_editText}></h1>
+                    <h1 ref={titleRef} contentEditable={`${!isTrash}`} onInput={_editText}></h1>
                 </React.Fragment>
             case 'todo':
                 return <React.Fragment>
-                    <h1 ref={titleRef} contentEditable='true' onInput={_editText}></h1>
+                    <h1 ref={titleRef} contentEditable={`${!isTrash}`} onInput={_editText}></h1>
                     <TodoList todos={note.todos} onChange={(todos) => onChange({
                         ...note,
                         todos
@@ -77,6 +79,7 @@ export function Note({ note, onDeleteNote, onChange }) {
     }
 
     function deleteLabel(tag) {
+        if (note.isArchive) return
         const labelIndex = note.label.findIndex(label => label === tag)
         note.label.splice(labelIndex, 1)
         onChange({ ...note })
@@ -134,7 +137,7 @@ export function Note({ note, onDeleteNote, onChange }) {
             }
             {
                 note.isArchive && <section className="note-action-button-container">
-                    <div title="Restore note" onClick={() => {
+                    <div className="restore-note-btn" title="Restore note" onClick={() => {
                         showSuccessMsg('Note restored')
                         onChange({
                             ...note,

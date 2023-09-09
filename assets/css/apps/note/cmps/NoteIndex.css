@@ -42,7 +42,7 @@
  }
 
  .note-sidebar {
-     height: calc(100vh - 80px);
+     /* height: calc(100vh - 80px); */
  }
 
  #li-1 {

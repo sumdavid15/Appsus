@@ -35,7 +35,7 @@ export function TodoList({ todos, onChange }) {
                     value={newTodo}
                     onChange={(e) => setNewTodo(e.target.value)}
                 />
-                <button type="button" onClick={handleAddTodo}>Add</button>
+                <button className="add-todo-list-item" type="button" onClick={handleAddTodo}>Add</button>
             </div>
             <div className="todo-list-container">
                 {todos.map(todo => (

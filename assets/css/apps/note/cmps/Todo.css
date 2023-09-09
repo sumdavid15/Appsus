@@ -20,6 +20,11 @@
     font-size: 10px;
 }
 
+.todo-delete-btn:hover,
+.add-todo-list-item:hover {
+    background-color: rgb(242, 242, 242);
+}
+
 .todo-item {
     display: flex;
     align-items: center;
@@ -37,3 +42,4 @@
 .todolist-input {
     border: none;
 }
+

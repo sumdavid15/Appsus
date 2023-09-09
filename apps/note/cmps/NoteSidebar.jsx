@@ -5,7 +5,7 @@ export function NoteSidebar({ archive, setArchive }) {
     <section id="note-side-bar" className="mail-sidebar" style={{
       marginTop: 20
     }}>
-      <ul className="sidebar-container" >
+      <ul id="note-side-bar-container" className="sidebar-container" >
         <li onClick={() => setArchive(false)} className={!archive ? 'active' : ''}>
           <i className="fa-regular fa-note-sticky"></i>
           <span >Notes</span>

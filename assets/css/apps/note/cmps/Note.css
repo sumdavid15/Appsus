@@ -112,7 +112,8 @@
 
 .pinned:hover,
 .mail-btn:hover,
-.add-label-btn:hover {
+.add-label-btn:hover,
+.restore-note-btn:hover {
     cursor: pointer;
     scale: 1.1;
 }
