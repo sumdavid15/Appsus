@@ -2,6 +2,7 @@ import { ColorPicker } from "./ColorPicker.jsx"
 import { TodoList } from "./Todo.jsx"
 import { NoteAddTag } from "./NoteAddTag.jsx"
 import { utilService } from "../../../services/util.service.js"
+import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect, useRef } = React
 const { useNavigate } = ReactRouterDOM
@@ -72,12 +73,14 @@ export function Note({ note, onDeleteNote, onChange }) {
     function duplicate() {
         const { id, ...rest } = note
         onChange({ ...rest })
+        showSuccessMsg('Note Duplicated')
     }
 
     function deleteLabel(tag) {
         const labelIndex = note.label.findIndex(label => label === tag)
         note.label.splice(labelIndex, 1)
         onChange({ ...note })
+        showSuccessMsg('Label deleted')
     }
 
     const dynClass = isPinned ? 'isPinned' : ''
@@ -90,9 +93,9 @@ export function Note({ note, onDeleteNote, onChange }) {
                 <div className="note-label-container">
                     {note.label.map(label => {
                         const id = utilService.makeId()
-                        return <button className="note-label" style={{ padding: '5px 10px' }} key={id}>
+                        return <button title="Label" className="note-label" style={{ padding: '5px 10px' }} key={id}>
                             {label}
-                            <div className="label-delete-btn" onClick={() => deleteLabel(label)}><i className="fa-solid fa-delete-left"></i></div>
+                            <div className="label-delete-btn" title="Delete label" onClick={() => deleteLabel(label)}><i className="fa-solid fa-delete-left"></i></div>
                         </button>
                     })}
                 </div>}
@@ -101,6 +104,7 @@ export function Note({ note, onDeleteNote, onChange }) {
                 <div className="note-action-button-container">
                     <div title="Pin Note" className={`pinned ${dynClass}`} onClick={() => {
                         setIsPinned(!isPinned)
+                        showSuccessMsg(`Note ${!isPinned ? 'pinned' : 'unpinned'}`)
                         return onChange({
                             ...note,
                             isPinned: !isPinned
@@ -115,7 +119,7 @@ export function Note({ note, onDeleteNote, onChange }) {
                     }} />
                     <div className="duplicate-btn" title='Duplicate Note' onClick={duplicate}><i className="fa-solid fa-copy"></i></div>
                     {note.type !== 'todo' && (
-                        <div onClick={() => {
+                        <div title="Send mail" onClick={() => {
                             navigate(`/mail/add/${note.noteTitle}&&${note.noteContent}`)
                         }}>
                             <i className="fa-regular fa-envelope"></i>
@@ -131,6 +135,7 @@ export function Note({ note, onDeleteNote, onChange }) {
             {
                 note.isArchive && <section className="note-action-button-container">
                     <div title="Restore note" onClick={() => {
+                        showSuccessMsg('Note restored')
                         onChange({
                             ...note,
                             isArchive: false,

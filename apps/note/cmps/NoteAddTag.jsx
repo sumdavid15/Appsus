@@ -1,3 +1,5 @@
+import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js";
+
 const { useState } = React
 
 export function NoteAddTag({ onChange, note }) {
@@ -24,6 +26,7 @@ export function NoteAddTag({ onChange, note }) {
         })
         closeInput();
         setInputValue('')
+        showSuccessMsg('Label Added')
     };
 
     const handleMouseLeave = () => {
@@ -35,7 +38,7 @@ export function NoteAddTag({ onChange, note }) {
 
     return (
         <div>
-            <div onClick={openInput}><i className="fa-solid fa-tag"></i></div>
+            <div title='Add label' onClick={openInput}><i className="fa-solid fa-tag"></i></div>
             {isInputOpen && (
                 <div className="modal" style={{ borderRadius: 5 }} onMouseLeave={handleMouseLeave}>
                     <div className="modal-content">
