@@ -4,9 +4,8 @@ import { noteService } from "../services/note.service.js";
 import { ArchiveNote } from "../cmps/ArchiveNote.jsx";
 
 
-const { Link } = ReactRouterDOM
 const { useState, useEffect } = React
-const { useParams, useNavigate } = ReactRouterDOM
+const { useParams } = ReactRouterDOM
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])

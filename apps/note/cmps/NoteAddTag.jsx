@@ -18,7 +18,6 @@ export function NoteAddTag({ onChange, note }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle the input value as needed (e.g., save it, submit a form, etc.)
         onChange({
             ...note, [label]: [...label, inputValue]
         })
