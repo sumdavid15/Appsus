@@ -13,7 +13,7 @@ export function NoteAdd({ onCreate }) {
     const [todos, setTodos] = useState([]);
 
     function addNote() {
-        if (!noteTitle && !noteContent) return
+        if (!noteTitle && !noteContent && type !== 'todo') return
         const note = {
             noteTitle,
             noteContent,
@@ -21,11 +21,13 @@ export function NoteAdd({ onCreate }) {
             color,
             isPinned,
             todos,
+            label: ['Importand', 'cheap', 'todo']
         }
         onCreate(note)
         clearInput()
         setTodos([])
         showSuccessMsg('Note Added')
+        console.log(note);
     }
 
     function clearInput() {

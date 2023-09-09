@@ -100,3 +100,11 @@
 .note-card.todo-list-container:hover {
     background-color: black;
 }
+
+.note-label-container{
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.note-label{}

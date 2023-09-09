@@ -11,7 +11,6 @@ import { mailService } from "./apps/mail/services/mail.service.js"
 import { MailAddModal } from "./apps/mail/cmps/MailAddModal.jsx"
 
 
-
 export function App() {
 
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilterBy())
@@ -23,14 +22,14 @@ export function App() {
     return (
     <Router>
         <section className="app">
-            <AppHeader 
-            onSetFilter={onSetFilter} filterBy={filterBy}
+            <AppHeader
+                onSetFilter={onSetFilter} filterBy={filterBy}
             />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/mail" element={<MailIndex 
-                onSetFilter={onSetFilter} filterBy={filterBy}
+                <Route path="/mail" element={<MailIndex
+                    onSetFilter={onSetFilter} filterBy={filterBy}
                 />} />
                 <Route path="mail/:add" element={<MailIndex 
                 onSetFilter={onSetFilter} filterBy={filterBy}/>} />

@@ -1,0 +1,12 @@
+.modal-content{
+    position: absolute;
+    display: flex;
+}
+
+.modal-content form{
+    display: flex;
+}
+
+.note-label-container{
+
+}
