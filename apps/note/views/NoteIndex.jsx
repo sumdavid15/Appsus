@@ -1,8 +1,6 @@
 import { NoteAdd } from "../cmps/NoteAdd.jsx";
 import { NoteList } from "../cmps/NoteList.jsx";
 import { noteService } from "../services/note.service.js";
-import { Note } from "../cmps/Note.jsx";
-
 
 const { useState, useEffect } = React
 
@@ -29,15 +27,12 @@ export function NoteIndex() {
 
     return (
         <div className="note-index-container">
-            {/* <Note onCreate={addNote} /> */}
             <NoteAdd onCreate={addNote} />
             <div style={{
                 display: 'flex',
                 justifyContent: 'center',
             }}>
-                <NoteList notes={notes.sort((a, b) => {
-                    return b.isPinned - a.isPinned;
-                })} onDeleteNote={deleteNote} onChange={saveNote} />
+                <NoteList notes={notes} onDeleteNote={deleteNote} onChange={saveNote} />
             </div>
         </div >
     )

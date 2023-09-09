@@ -29,6 +29,8 @@
 
 .add-note-action-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
 }
 
@@ -40,15 +42,15 @@
 .add-note-type-btn>*:hover {
     cursor: pointer;
     scale: 1.1;
-    transition: scale 300ms ;
+    transition: scale 300ms;
 }
 
-.addnote-btn{
+.addnote-btn {
     background-color: white;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.addnote-btn:hover{
-background-color: #f6f6f6;
+.addnote-btn:hover {
+    background-color: #f6f6f6;
 }

@@ -1,53 +1,55 @@
 const { useState } = React
 
-export function TodoList() {
-    const [tasks, setTasks] = useState([]);
-    const [task, setTask] = useState('');
+export function TodoList({ todos, onChange }) {
+    const [newTodo, setNewTodo] = useState('');
 
-    const addTask = () => {
-        if (task.trim() !== '') {
-            setTasks([...tasks, task]);
-            setTask('');
+    const handleAddTodo = () => {
+        if (newTodo.trim() !== '') {
+            onChange([...todos, { text: newTodo, completed: false }]);
+            setNewTodo('');
         }
     };
 
-    const deleteTask = (index) => {
-        const newTasks = [...tasks];
-        newTasks.splice(index, 1);
-        setTasks(newTasks);
+    const handleToggleTodo = (index) => {
+        const updatedTodos = [...todos];
+        updatedTodos[index].completed = !updatedTodos[index].completed;
+        onChange(updatedTodos);
     };
 
-    function setTextLine() {
-
-    }
+    const handleDeleteTodo = (index) => {
+        const updatedTodos = [...todos];
+        updatedTodos.splice(index, 1);
+        onChange(updatedTodos);
+    };
 
     return (
-        <section className='todolist-container'>
-            <div>
-                <input className='todolist-input'
+        <div>
+            <div className="grouped">
+                <input
                     type="text"
-                    placeholder="Add a task"
-                    value={task}
-                    onChange={(e) => setTask(e.target.value)}
+                    placeholder="Add a new task"
+                    value={newTodo}
+                    onChange={(e) => setNewTodo(e.target.value)}
                 />
-                <button onClick={addTask}>Add</button>
+                <button type="button" onClick={handleAddTodo}>Add</button>
             </div>
-            <div>
-                {tasks.map((task, index) => (
-                    <div className="todo-list" key={index} style={{ textTransform: 'line-through' }}>
-                        <input
-                            type="checkbox"
-                            checked={true}
-                            onChange={(e) => setIsPinned(e.target.checked)}
-                        />
-                        <div className='todo-list-content'>{task}</div>
-                        <div onClick={() => deleteTask(index)}><i className="fa-solid fa-delete-left"></i></div>
+            <div className="todo-list-container">
+                {todos.map((todo, index) => (
+                    <div className="todo-item" key={index}>
+                        <div className="todo-checkbox-container">
+                            <input
+                                type="checkbox"
+                                checked={todo.completed}
+                                onChange={() => handleToggleTodo(index)}
+                            />
+                            <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+                                {todo.text}
+                            </span>
+                        </div>
+                        <button className="todo-delete-btn" type="button" onClick={() => handleDeleteTodo(index)}> <i className="fa-solid fa-trash" onClick={() => handleDeleteTodo(index)}></i></button>
                     </div>
                 ))}
-            </div>
-        </section>
+            </div >
+        </div>
     );
-};
-
-
-
+}
