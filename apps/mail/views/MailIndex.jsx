@@ -8,11 +8,18 @@ import { MailAddModal } from "../cmps/MailAddModal.jsx"
 import { MailSortBy } from "../cmps/MailSortBy.jsx"
 
 const { useState, useEffect } = React
+const { useNavigate, useParams } = ReactRouterDOM
+
 
 export function MailIndex({ onSetFilter, filterBy }) {
   const [mails, setMails] = useState([])
   const [sortBy, setSortBy] = useState(mailService.getDefaultSortBy())
   const [showModal, setShowModal] = useState(false)
+  const params = useParams()
+
+  useEffect(() => {
+    if (params.add) setShowModal(true)
+  })
 
   useEffect(() => {
     mailService

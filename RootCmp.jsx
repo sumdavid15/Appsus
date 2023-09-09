@@ -8,6 +8,7 @@ import { Home } from "./views/Home.jsx"
 import { MailIndex } from "./apps/mail/views/MailIndex.jsx"
 import { NoteIndex } from "./apps/note/views/NoteIndex.jsx"
 import { mailService } from "./apps/mail/services/mail.service.js"
+import { MailAddModal } from "./apps/mail/cmps/MailAddModal.jsx"
 
 
 
@@ -19,7 +20,8 @@ export function App() {
         setFilterBy(filterBy)
     }
 
-    return <Router>
+    return (
+    <Router>
         <section className="app">
             <AppHeader 
             onSetFilter={onSetFilter} filterBy={filterBy}
@@ -30,8 +32,13 @@ export function App() {
                 <Route path="/mail" element={<MailIndex 
                 onSetFilter={onSetFilter} filterBy={filterBy}
                 />} />
+                <Route path="mail/:add" element={<MailIndex 
+                onSetFilter={onSetFilter} filterBy={filterBy}/>} />
+                <Route path="mail/:add/:desc" element={<MailIndex 
+                onSetFilter={onSetFilter} filterBy={filterBy}/>} />
+                
                 <Route path="/note" element={<NoteIndex />} />
             </Routes>
         </section>
-    </Router>
-}
+    </Router> 
+    )}
