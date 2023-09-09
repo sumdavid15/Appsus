@@ -72,14 +72,15 @@
     transition: scale 130ms;
 }
 
-.note-card:hover .note-action-section {
-    opacity: 1;
-}
 
 .note-action-section {
     opacity: 0;
     transition: all 300ms;
     margin-top: auto;
+}
+
+.note-card:hover .note-action-section {
+    opacity: 1;
 }
 
 .delete-btn:hover,

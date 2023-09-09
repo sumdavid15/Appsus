@@ -1,4 +1,5 @@
 import { MailSearchFilter } from "../apps/mail/cmps/MailSearchFilter.jsx"
+import { UserMsg } from "./UserMsg.jsx"
 
 const { useState } = React
 const { Link, NavLink, useLocation } = ReactRouterDOM
@@ -19,15 +20,15 @@ export function AppHeader({ onSetFilter, filterBy }) {
     <header className="app-header">
       <Link to="/">
         <div className="logo">
-        <img src="img/logo.png" alt="" />
-        <span>Appsus</span>
+          <img src="img/logo.png" alt="" />
+          <span>Appsus</span>
         </div>
       </Link>
 
       {isMail && (
         <MailSearchFilter onSetFilter={onSetFilter} filterBy={filterBy} />
       )}
-      {isNote && <h3>Note</h3>}
+      {/* {isNote && <h3>Note</h3>} */}
       <nav>
         <button
           className={`menu ${isOpened ? "opened" : ""}`}
@@ -50,34 +51,34 @@ export function AppHeader({ onSetFilter, filterBy }) {
         {isOpened && (
           <div className="menu-container">
             <div>
-            <NavLink to="/" onClick={toggleMenu}>
-              <section>
-                <img src="img/home.png" alt="" />
-                <span>Home</span>
-              </section>
-            </NavLink>
-            <NavLink to="/about" onClick={toggleMenu}>
-              <section>
-                <img src="img/info.png" alt="" />
-                <span>About</span>
-              </section>
-            </NavLink>
+              <NavLink to="/" onClick={toggleMenu}>
+                <section>
+                  <img src="img/home.png" alt="" />
+                  <span>Home</span>
+                </section>
+              </NavLink>
+              <NavLink to="/about" onClick={toggleMenu}>
+                <section>
+                  <img src="img/info.png" alt="" />
+                  <span>About</span>
+                </section>
+              </NavLink>
             </div>
             <div>
-            <NavLink to="mail" onClick={toggleMenu}>
-              <section>
-                <img src="img/gmail.png" alt="" />
-                <span>Mail</span>
-              </section>
-            </NavLink>
-            <NavLink to="/note" onClick={toggleMenu}>
-              <section>
-                <img src="img/keeps.png" alt="" />
-                <span>Note</span>
-              </section>
-            </NavLink>
+              <NavLink to="mail" onClick={toggleMenu}>
+                <section>
+                  <img src="img/gmail.png" alt="" />
+                  <span>Mail</span>
+                </section>
+              </NavLink>
+              <NavLink to="/note" onClick={toggleMenu}>
+                <section>
+                  <img src="img/keeps.png" alt="" />
+                  <span>Note</span>
+                </section>
+              </NavLink>
             </div>
-            </div>
+          </div>
         )}
 
         {/* <NavLink to="/">Home</NavLink>
@@ -85,6 +86,7 @@ export function AppHeader({ onSetFilter, filterBy }) {
         <NavLink to="/mail">Mail</NavLink>
         <NavLink to="/note">Note</NavLink> */}
       </nav>
+      <UserMsg />
     </header>
   )
 }

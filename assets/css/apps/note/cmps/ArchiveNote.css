@@ -5,3 +5,10 @@
     column-gap: 10px;
     margin-top: 40px;
 }
+
+.trash-note-msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}

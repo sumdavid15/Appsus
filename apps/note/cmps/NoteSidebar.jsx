@@ -1,24 +1,20 @@
 
-export function NoteSidebar() {
+export function NoteSidebar({ archive, setArchive }) {
 
-    return (
-        <section className="mail-sidebar">
-        <ul className="sidebar-container">
-          <li>
-                <i className="fa-regular fa-envelope"></i>
-            <span>Inbox</span>
-          </li>
-          <li>
-                <i className="fa-regular fa-trash-can"></i>
-            <span>Trash</span>
-          </li>
-        </ul>
-
-                      <li className="hiddenBar"></li>
-                      <li className="hiddenBar"></li>
-                      <li className="hiddenBar"></li>
-                      <li className="hiddenBar"></li>
-                      <li className="hiddenBar"></li>     
-      </section>
-    )
+  return (
+    <section id="note-side-bar" className="mail-sidebar" style={{
+      marginTop: 20
+    }}>
+      <ul className="sidebar-container" >
+        <li onClick={() => setArchive(false)} className={!archive ? 'active' : ''}>
+          <i className="fa-regular fa-note-sticky"></i>
+          <span >Notes</span>
+        </li>
+        <li onClick={() => setArchive(true)} className={archive ? 'active' : ''}>
+          <i className="fa-regular fa-trash-can"></i>
+          <span >Trash</span>
+        </li>
+      </ul>
+    </section >
+  )
 }

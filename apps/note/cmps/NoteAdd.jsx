@@ -30,7 +30,7 @@ export function NoteAdd({ onCreate, getParams }) {
             color,
             isPinned,
             todos,
-            label: ['Importand', 'cheap', 'todo']
+            label: []
         }
         onCreate(note)
         clearInput()

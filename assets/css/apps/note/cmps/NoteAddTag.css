@@ -1,12 +1,30 @@
-.modal-content{
+.modal {
+    position: absolute;
+}
+
+.modal-content {
     position: absolute;
     display: flex;
+    z-index: 1;
 }
 
-.modal-content form{
+.modal-content form {
     display: flex;
 }
 
-.note-label-container{
-
+.note-label {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
 }
+
+.label-delete-btn {
+    display: none;
+}
+
+.note-label:hover .label-delete-btn {
+    display: block;
+}
+
+.note-label-container {}
