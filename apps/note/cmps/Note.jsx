@@ -79,7 +79,7 @@ export function Note({ note, onDeleteNote, onChange }) {
     }
 
     function deleteLabel(tag) {
-        if (note.isArchive) return
+        if (note.isArchive) return showErrorMsg("Can't be edited in the trash")
         const labelIndex = note.label.findIndex(label => label === tag)
         note.label.splice(labelIndex, 1)
         onChange({ ...note })

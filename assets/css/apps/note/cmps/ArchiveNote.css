@@ -1,9 +1,9 @@
 .trash-note-container {
     position: relative;
-    padding: 0px 19px 0px 19px;
+    padding: 0px 30px 0px 50px;
     columns: 4 261px;
     column-gap: 10px;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .trash-note-msg {
