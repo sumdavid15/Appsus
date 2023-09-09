@@ -28,3 +28,8 @@
     margin: 0;
     border-radius: 20%;
 }
+
+.mail-count { 
+    display: contents;
+    font-size: 10px;
+}
