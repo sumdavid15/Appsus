@@ -36,6 +36,7 @@ export function App() {
                     <Route path="mail/:action/:desc" element={<MailIndex
                         onSetFilter={onSetFilter} filterBy={filterBy} />} />
                     <Route path="/note/:desc" element={<NoteIndex />} />
+                    {/* <Route path="/book" element={<BookIndex />} /> */}
                     <Route path="/note" element={<NoteIndex />} />
                 </Routes>
             </section>

@@ -38,7 +38,7 @@ export function NoteAddTag({ onChange, note }) {
 
     return (
         <div>
-            <div title='Add label' onClick={openInput}><i className="fa-solid fa-tag"></i></div>
+            <div className="add-label-btn" title='Add label' onClick={openInput}><i className="fa-solid fa-tag"></i></div>
             {isInputOpen && (
                 <div className="modal" style={{ borderRadius: 5 }} onMouseLeave={handleMouseLeave}>
                     <div className="modal-content">

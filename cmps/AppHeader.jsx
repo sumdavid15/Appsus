@@ -58,10 +58,10 @@ export function AppHeader({ onSetFilter, filterBy }) {
                     <span>Home</span>
                   </section>
                 </NavLink>
-                <NavLink to="/about" onClick={toggleMenu}>
+                <NavLink to="/book" onClick={toggleMenu}>
                   <section>
-                    <img src="img/info.png" alt="" />
-                    <span>About</span>
+                    <img src="img/books.png" alt="" />
+                    <span>Books</span>
                   </section>
                 </NavLink>
               </div>

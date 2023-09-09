@@ -110,7 +110,11 @@
 
 .note-label {}
 
-.pinned:hover {
+.pinned:hover,
+.mail-btn:hover,
+.add-label-btn:hover {
     cursor: pointer;
     scale: 1.1;
 }
+
+.mail-btn {}
