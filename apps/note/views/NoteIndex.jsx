@@ -2,6 +2,7 @@ import { NoteAdd } from "../cmps/NoteAdd.jsx";
 import { NoteList } from "../cmps/NoteList.jsx";
 import { noteService } from "../services/note.service.js";
 import { ArchiveNote } from "../cmps/ArchiveNote.jsx";
+import { NoteSidebar } from "../cmps/NoteSidebar.jsx";
 
 
 const { Link } = ReactRouterDOM
@@ -51,6 +52,11 @@ export function NoteIndex() {
     }
 
     return <React-fragment>
+        <section className="note-container">
+        <div className="note-sidebar">
+        <NoteSidebar />
+        </div>
+        <div>
         {!archive && (
             <div className="note-index-container">
                 <NoteAdd onCreate={addNote} getParams={getParams} />
@@ -61,6 +67,8 @@ export function NoteIndex() {
             </div>
         )}
         {archive && <ArchiveNote setArchive={setArchive} notes={notes} onDeleteNote={deleteNote} onChange={saveNote} />}
+        </div>
+        </section>
     </React-fragment>
 }
 

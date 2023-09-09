@@ -15,7 +15,6 @@ import { NoteAdd } from "./apps/note/cmps/NoteAdd.jsx"
 export function App() {
 
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilterBy())
-
     function onSetFilter(filterBy) {
         setFilterBy(filterBy)
     }

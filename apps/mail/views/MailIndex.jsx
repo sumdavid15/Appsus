@@ -16,6 +16,9 @@ export function MailIndex({ onSetFilter, filterBy }) {
   const [sortBy, setSortBy] = useState(mailService.getDefaultSortBy())
   const [showModal, setShowModal] = useState(false)
   const params = useParams()
+  const navigate = useNavigate()
+
+
 
   useEffect(() => {
     if (params.add) setShowModal(true)
@@ -53,7 +56,7 @@ export function MailIndex({ onSetFilter, filterBy }) {
       mail.isStarred = !mail.isStarred
     }
     if (prop === "saveAsNote") {
-      console.log("Waiting for david")
+      navigate(`/note/${mail.subject}&&${mail.body}`)
     }
     mailService.save(mail).then(() => {
       mailService.query(filterBy, sortBy).then((mails) => {
