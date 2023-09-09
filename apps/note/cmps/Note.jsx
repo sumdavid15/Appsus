@@ -4,7 +4,7 @@ import { NoteAddTag } from "./NoteAddTag.jsx"
 import { utilService } from "../../../services/util.service.js"
 
 const { useState, useEffect, useRef } = React
-const { useParams, useNavigate, Link } = ReactRouterDOM
+const { useNavigate } = ReactRouterDOM
 
 export function Note({ note, onDeleteNote, onChange }) {
     const [color, setColor] = useState(note.color)
@@ -27,7 +27,6 @@ export function Note({ note, onDeleteNote, onChange }) {
         if (!match) return ''
         return match[1]
     }
-
 
     function renderNoteContent(note) {
 
@@ -75,6 +74,12 @@ export function Note({ note, onDeleteNote, onChange }) {
         onChange({ ...rest })
     }
 
+    function deleteLabel(tag) {
+        const labelIndex = note.label.findIndex(label => label === tag)
+        note.label.splice(labelIndex, 1)
+        onChange({ ...note })
+    }
+
     const dynClass = isPinned ? 'isPinned' : ''
 
     return (
@@ -83,7 +88,13 @@ export function Note({ note, onDeleteNote, onChange }) {
 
             {note.label &&
                 <div className="note-label-container">
-                    {note.label.map(label => <button onClick={() => { console.log(`${label}`) }} key={utilService.makeId()} className="note-label">{label}</button>)}
+                    {note.label.map(label => {
+                        const id = utilService.makeId()
+                        return <button className="note-label" style={{ padding: '5px 10px' }} key={id}>
+                            {label}
+                            <div className="label-delete-btn" onClick={() => deleteLabel(label)}><i className="fa-solid fa-delete-left"></i></div>
+                        </button>
+                    })}
                 </div>}
 
             {!note.isArchive && <section className='note-action-section'>
@@ -106,16 +117,14 @@ export function Note({ note, onDeleteNote, onChange }) {
                     {note.type !== 'todo' && (
                         <div onClick={() => {
                             navigate(`/mail/add/${note.noteTitle}&&${note.noteContent}`)
-                            console.log(note.noteTitle);
-                            console.log(note.noteContent);
                         }}>
                             <i className="fa-regular fa-envelope"></i>
                         </div>
                     )}
+                    <NoteAddTag onChange={onChange} note={note} />
                     <div className="delete-btn" title='Delete Note' onClick={() => {
                         onDeleteNote(note)
                     }}><i className="fa-solid fa-trash"></i></div>
-                    <NoteAddTag onChange={onChange} note={note} />
                 </div>
             </section>
             }
@@ -130,9 +139,6 @@ export function Note({ note, onDeleteNote, onChange }) {
                         <i className="fa-solid fa-rotate-left"></i>
                     </div>
                     <div className="delete-btn" title='Delete Note' onClick={() => {
-                        // onChange({
-                        //     ...note, isArchive: true,
-                        // })
                         onDeleteNote(note)
                     }}><i className="fa-solid fa-trash"></i></div>
                 </section>

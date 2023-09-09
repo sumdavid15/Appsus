@@ -1,8 +1,24 @@
 @media (max-width: 770px) {
+    #note-side-bar {
+        flex-direction: row;
+        justify-content: center;
+        height: 50px;
+    }
+
+    .hidden-div {
+        display: none;
+    }
+
+    .pinned-section-container,
+    .others-section-container {
+        columns: 2 340px;
+    }
+
     .feature-container {
         flex-direction: column;
         padding: 1rem;
     }
+
     .cards-container {
         flex-direction: column;
         gap: 1rem;
@@ -20,10 +36,13 @@
 }
 
 @media (min-width: 770px) {
+
+
     .hero-text {
         font-size: 5rem;
         font-weight: 700;
     }
+
     .hero-text h2 {
         font-size: 1.5rem;
     }

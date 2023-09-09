@@ -36,37 +36,33 @@ export function NoteIndex() {
     }
 
     function deleteNote(note) {
-        console.log(note);
-        console.log('note.isArchive:', note.isArchive)
         if (!note.isArchive) {
             note.isArchive = true;
-            // setNotes(notes.filter(note => !note.isArchive))
             saveNote(note)
         } else {
-            console.log('note: Else', note)
-            // setNotes(notes.filter(note => note.isArchive))
-            // saveNote(note)
             noteService.deleteNote(note.id).then(() => noteService.getNotes()).then(setNotes)
         }
     }
 
+
     return <React-fragment>
-        <section className="note-container">
-        <div className="note-sidebar">
-        <NoteSidebar />
-        </div>
-        <div>
-        {!archive && (
-            <div className="note-index-container">
-                <NoteAdd onCreate={addNote} getParams={getParams} />
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <NoteList notes={notes} onDeleteNote={deleteNote} onChange={saveNote} />
+        <section>
+            <div className="note-container">
+                    <div className="hidden-div"></div>
+                <div className="note-sidebar">
+                    <NoteSidebar archive={archive} setArchive={setArchive} />
                 </div>
-                <button onClick={() => setArchive(true)}>Archive</button>
+                {!archive && (
+                    <div className="note-index-container">
+                        {/* <input type="text" name="" id="" /> */}
+                        <NoteAdd onCreate={addNote} getParams={getParams} />
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <NoteList notes={notes} onDeleteNote={deleteNote} onChange={saveNote} />
+                        </div>
+                    </div>
+                )}
+                {archive && <ArchiveNote notes={notes} onDeleteNote={deleteNote} onChange={saveNote} />}
             </div>
-        )}
-        {archive && <ArchiveNote setArchive={setArchive} notes={notes} onDeleteNote={deleteNote} onChange={saveNote} />}
-        </div>
         </section>
     </React-fragment>
 }

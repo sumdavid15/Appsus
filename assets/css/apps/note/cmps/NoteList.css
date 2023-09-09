@@ -1,33 +1,35 @@
- /* .note-list {
-     display: flex;
-     flex-wrap: wrap;
-     justify-content: center;
-     margin-top: 40px;
-     gap: 20px;
- } */
+.note-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
 
- .note-list {
-     display: flex;
-     flex-direction: column;
-     gap: 40px;
- }
+.pinned-section-container,
+.others-section-container {
+    position: relative;
+    padding: 0px 19px 0px 19px;
+    columns: 4 340px;
+    column-gap: 10px;
+}
 
- .pinned-section-container,
- .others-section-container {
-     position: relative;
-     padding: 0px 19px 0px 19px;
-     columns: 4 261px;
-     column-gap: 10px;
- }
+.pinned-section,
+.others-section {
+    padding: 10px 19px;
+}
 
- .pinned-section,
- .others-section {
-     padding: 10px 19px;
- }
+.no-notes-msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
 
- .no-notes-msg {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     margin-top: 50px;
- }
+.note-sidebar {
+    position: absolute;
+    background-color: #F6F8FC;
+    z-index: 1;
+}
+
+.hidden-div {
+    width: 60px;
+}

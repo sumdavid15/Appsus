@@ -18,18 +18,26 @@ export function NoteAddTag({ onChange, note }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!inputValue) return
         onChange({
-            ...note, [label]: [...label, inputValue]
+            ...note, label: [...note.label, inputValue]
         })
-        console.log(inputValue);
         closeInput();
+        setInputValue('')
+    };
+
+    const handleMouseLeave = () => {
+        if (isInputOpen) {
+            closeInput()
+            setInputValue('')
+        }
     };
 
     return (
         <div>
             <div onClick={openInput}><i className="fa-solid fa-tag"></i></div>
             {isInputOpen && (
-                <div className="modal">
+                <div className="modal" style={{ borderRadius: 5 }} onMouseLeave={handleMouseLeave}>
                     <div className="modal-content">
                         <span className="close" onClick={closeInput}>&times;</span>
                         <form onSubmit={handleSubmit}>

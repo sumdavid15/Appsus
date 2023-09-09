@@ -3,6 +3,7 @@
      align-items: center;
      flex-direction: column;
      height: 100%;
+     width: 100vw;
      margin-top: 20px;
  }
 
@@ -33,5 +34,17 @@
  }
 
  .note-container {
-    display: flex;
+     display: flex;
+     /* align-items: center; */
+     height: 100%;
+     width: 100%;
+     /* margin-top: 20px; */
+ }
+
+ .note-sidebar {
+     height: calc(100vh - 80px);
+ }
+
+ #li-1 {
+     height: 166px;
  }
