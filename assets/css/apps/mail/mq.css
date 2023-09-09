@@ -1,6 +1,9 @@
 /* MQ */
 
 @media (max-width: 770px) {
+    .mail-container {
+        height: calc(100vh - 126px);
+    }
     .mail-add-modal {
         width: 350px;
         font-size: 0.8em;
@@ -88,7 +91,7 @@
     }
 
     .mail-list {
-        height: 80vh;
+        height: 90vh;
     }
 
     .app-header img {
