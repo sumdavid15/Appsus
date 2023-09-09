@@ -4,6 +4,7 @@ import { NoteAddTag } from "./NoteAddTag.jsx"
 import { utilService } from "../../../services/util.service.js"
 
 const { useState, useEffect, useRef } = React
+const { useParams, useNavigate, Link } = ReactRouterDOM
 
 export function Note({ note, onDeleteNote, onChange }) {
     const [color, setColor] = useState(note.color)
@@ -11,6 +12,7 @@ export function Note({ note, onDeleteNote, onChange }) {
 
     const titleRef = useRef(null)
     const contentRef = useRef(null)
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (titleRef.current) titleRef.current.innerText = note.noteTitle;
@@ -103,6 +105,7 @@ export function Note({ note, onDeleteNote, onChange }) {
                     <div className="duplicate-btn" title='Duplicate Note' onClick={duplicate}><i className="fa-solid fa-copy"></i></div>
                     {note.type !== 'todo' && (
                         <div onClick={() => {
+                            navigate(`/mail/add/${note.noteTitle}&&${note.noteContent}`)
                             console.log(note.noteTitle);
                             console.log(note.noteContent);
                         }}>
