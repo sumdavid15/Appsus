@@ -6,6 +6,7 @@ import { MailSortBy } from "./MailSortBy.jsx"
 import { MailDetails } from "./MailDetails.jsx"
 
 const { useState, useEffect } = React
+const { Link } = ReactRouterDOM
 
 export function MailList({ mails, onMailClicked, onSetSortBy, sortBy }) {
   const [isDetailsShown, setIsDetailsShown] = useState(false)
@@ -39,9 +40,9 @@ export function MailList({ mails, onMailClicked, onSetSortBy, sortBy }) {
             <h1>Nothing to see here..</h1>
             <span>
               Try to add a{" "}
-              <a href="#/mail" className="link">
+              <Link to="/mail/add" className="link">
                 new mail
-              </a>
+              </Link>
             </span>
           </div>
         )}

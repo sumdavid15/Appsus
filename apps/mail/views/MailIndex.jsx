@@ -18,12 +18,6 @@ export function MailIndex({ onSetFilter, filterBy }) {
   const params = useParams()
   const navigate = useNavigate()
 
-
-
-  useEffect(() => {
-    if (params.add) setShowModal(true)
-  })
-
   useEffect(() => {
     mailService
       .query(filterBy, sortBy)
