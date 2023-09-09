@@ -110,6 +110,11 @@ export function MailSidebar({ onSetFilter, filterBy, handleModal }) {
           )}
           <span>Trash</span>
         </li>
+        <li className="hiddenBar"></li>
+        <li className="hiddenBar"></li>
+        <li className="hiddenBar"></li>
+        <li className="hiddenBar"></li>
+        <li className="hiddenBar"></li>
       </ul>
     </section>
   )

@@ -126,21 +126,23 @@
         transition: width 0.4s ease-in-out;
     }
 
-    .sidebar-container li span {
-        opacity: 0;
-        transition: opacity .25s ease-in-out;
-    }
-    .sidebar-container:hover li span {
-        opacity: 1;
-        transition: opacity .25s ease-in-out;
-      }
-      .sidebar-container li i {
-        margin-inline-end: 1em;
-    }
-
     .mail-sidebar:hover {
         width:9em;
         transition: width 0.4s ease-in-out;
+    }
+
+    .sidebar-container li span {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity .25s ease-in-out, visibility .30s ease-in-out;
+    }
+    .sidebar-container:hover li span {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity .25s ease-in-out, visibility .30s ease-in-out;
+      }
+      .sidebar-container li i {
+        margin-inline-end: 1em;
     }
 
     .sidebar-container li:hover {
@@ -179,6 +181,10 @@
 
       .radio-inputs .radio {
         font-size: 1em;
+      }
+
+      .hiddenBar {
+        visibility: hidden;
       }
 
 }

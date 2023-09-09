@@ -1,39 +1,13 @@
-// Email structure:
-// {
-//     id: utilService.makeId(),
-//     subject: 'Wassap?',
-//     body: 'Pick up!',
-//     sentAt: Date.now(),
-//     removedAt: null,
-//     from: 'getUser().email',
-//     to: 'john@gmail',
-//    status: 'inbox',
-//     isRead: false,
-//     isStarred: false,
-//     labels: []
-// }
-
-import { mailService } from "../services/mail.service.js"
-
 const { useState, useEffect } = React
 
-export function MailPreview({
-  mail,
-  onMailClicked,
-  onToggleDetails,
-  mailsList,
-}) {
-  // const [mails, setMails] = useState(mailsList)
+export function MailPreview({ mail, onMailClicked, onToggleDetails }) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [isStarred, setIsStarred] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 
+  // useEffect(() => {}, [isExpanded])
 
-
-  useEffect(() => {
-  }, [isExpanded])
-
-  useEffect(() => {}, [isStarred])
+  // useEffect(() => {}, [isStarred])
 
   function formatTime(time) {
     const now = Date.now()
@@ -76,33 +50,7 @@ export function MailPreview({
   function handleClick(ev, mail, prop) {
     ev.stopPropagation()
     onMailClicked(mail, prop)
-    // if (prop === "delete") {
-    //   if (mail.removedAt === null) {
-    //     mail.removedAt = Date.now()
-    //     mailService.save(mail).then(() => {
-    //       mailService.query().then((mails) => {
-    //         setMails(mails)
-    //       })
-    //     })
-    //   } else {
-    //     mailService.remove(mail.id).then(() => {
-    //       mailService.query().then((mails) => {
-    //         setMails(mails)
-    //       })
-    //     })
-    //   }
-    // }
-    if ( prop === 'delete') {
-      if (mail.removedAt !== null) {
-        mailService.remove(mail.id).then(() => {
-          mailService.query().then((mails) => {
-            setMails(mails)
-          })
-        })
-      }
-    }
   }
-
 
   return (
     <React.Fragment>
