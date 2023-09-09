@@ -5,6 +5,7 @@ export function MailSidebar({ onSetFilter, filterBy, handleModal }) {
   const [statusFilter, setStatusFilter] = useState(filterBy.status)
   const [starredFilter, setStarredFilter] = useState(filterBy.isStarred)
   const [selected, setSelected] = useState("inbox")
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
 
   useEffect(() => {
     const newFilterBy = {
@@ -23,6 +24,18 @@ export function MailSidebar({ onSetFilter, filterBy, handleModal }) {
     }
     onSetFilter(newFilterBy)
   }, [starredFilter])
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setIsMobile(window.innerWidth <= 768)
+    })
+    return () => {
+      window.removeEventListener("resize", () => {
+        setIsMobile(window.innerWidth <= 768)
+      })
+    }
+  }, [])
+
 
   function handleChange(ev) {
     if (ev.target.name === "status") {
@@ -110,11 +123,15 @@ export function MailSidebar({ onSetFilter, filterBy, handleModal }) {
           )}
           <span>Trash</span>
         </li>
-        <li className="hiddenBar"></li>
-        <li className="hiddenBar"></li>
-        <li className="hiddenBar"></li>
-        <li className="hiddenBar"></li>
-        <li className="hiddenBar"></li>
+        {!isMobile && (
+          <React.Fragment>
+                      <li className="hiddenBar"></li>
+                      <li className="hiddenBar"></li>
+                      <li className="hiddenBar"></li>
+                      <li className="hiddenBar"></li>
+                      <li className="hiddenBar"></li>
+          </React.Fragment>           
+        )}
       </ul>
     </section>
   )

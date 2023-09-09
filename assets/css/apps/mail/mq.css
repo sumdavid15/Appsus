@@ -16,6 +16,7 @@
         display: flex;
         justify-content: space-evenly;
         background-color: #f6f8fc;
+        z-index: 10;
     }
 
     .mail-sidebar {
